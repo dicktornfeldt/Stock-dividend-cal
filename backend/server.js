@@ -9,6 +9,8 @@ import SourceMapSupport from 'source-map-support';
 // import routes
 import todoRoutes from './routes/todo-server-router';
 
+
+
 // define our app using express
 const app = express();
 
@@ -36,6 +38,7 @@ const port = process.env.PORT || 3001;
 // connect to database
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/mern-todo-app');
+
 
 // add Source Map Support
 SourceMapSupport.install();
