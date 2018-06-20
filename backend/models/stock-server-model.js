@@ -1,12 +1,11 @@
 import mongoose from 'mongoose';
 
 var Schema = mongoose.Schema({
-  createdAt: {
+  addeddAt: {
     type: Date,
     default: Date.now
   },
-  fullName: String,
-  todoText: String
+  stockShort: String
 });
 
-export default mongoose.model('Todo', Schema);
+export default mongoose.model('Stock', Schema);

@@ -1,18 +1,40 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import { addStock } from '../actions/stockActions';
 
 class Home extends Component {
+  state = {
+    inputVal: '',
+  };
+
+  handleChange = event => {
+    this.setState({ inputVal: event.target.value });
+  };
+
+  handleSubmit = () => {
+    const data = new FormData();
+    data.append('stockShort', this.state.inputVal);
+    this.props.addStock(data);
+  };
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <input name="stock" onChange={this.handleChange} value={this.state.inputVal} type="text" />
+        <button onClick={this.handleSubmit}>Add</button>
       </div>
     );
   }
 }
 
-export default Home;
+function mapStateToProps(state) {
+  return {
+    stocks: state.stockReducer,
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  { addStock }
+)(Home);
