@@ -9,9 +9,12 @@ class Home extends Component {
   };
 
   handleChange = event => {
-    this.setState({ inputVal: event.target.value });
+    this.setState({
+      inputVal: event.target.value,
+    });
   };
 
+  // dispatch data via redux to backend
   handleSubmit = () => {
     const data = new FormData();
     data.append('stockShort', this.state.inputVal);
@@ -22,7 +25,7 @@ class Home extends Component {
     return (
       <div>
         <input name="stock" onChange={this.handleChange} value={this.state.inputVal} type="text" />
-        <button onClick={this.handleSubmit}>Add</button>
+        <button onClick={this.handleSubmit}> Add </button>{' '}
       </div>
     );
   }
@@ -36,5 +39,7 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { addStock }
+  {
+    addStock,
+  }
 )(Home);
