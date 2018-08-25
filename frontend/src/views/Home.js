@@ -39,7 +39,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  {
-    addStock,
-  }
+  { addStock }
 )(Home);

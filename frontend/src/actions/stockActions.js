@@ -22,18 +22,21 @@ export const addStock = stock => {
     });
   };
 };
+
 export const addStockRequest = stock => {
   return {
     type: 'ADD_NEW_STOCK_REQUEST',
     stock,
   };
 };
+
 export const addStockRequestSuccess = (stock, message) => {
   return {
     type: 'ADD_NEW_STOCK_REQUEST_SUCCESS',
     stock: stock,
   };
 };
+
 export const addStockRequestFailed = error => {
   return {
     type: 'ADD_NEW_STOCK_REQUEST_FAILED',
