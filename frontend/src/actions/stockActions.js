@@ -2,7 +2,7 @@ const apiUrl = '/api/';
 
 export const addStock = stock => {
   return dispatch => {
-    dispatch(addStockRequest(stock));
+    dispatch(addStockRequest());
     return fetch(apiUrl, {
       method: 'POST',
       body: stock,
@@ -12,7 +12,7 @@ export const addStock = stock => {
       if (response.ok) {
         response.json().then(data => {
           console.log(data);
-          dispatch(addStockRequestSuccess(data.stock[0], data.message));
+          dispatch(addStockRequestSuccess(data.stock.stockShort));
         });
       } else {
         response.json().then(error => {
@@ -23,14 +23,13 @@ export const addStock = stock => {
   };
 };
 
-export const addStockRequest = stock => {
+export const addStockRequest = () => {
   return {
     type: 'ADD_NEW_STOCK_REQUEST',
-    stock,
   };
 };
 
-export const addStockRequestSuccess = (stock, message) => {
+export const addStockRequestSuccess = stock => {
   return {
     type: 'ADD_NEW_STOCK_REQUEST_SUCCESS',
     stock: stock,

@@ -4,10 +4,10 @@ const INITIAL_STATE = {
 
 function stockReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case 'ADD_STOCK':
+    case 'ADD_NEW_STOCK_REQUEST_SUCCESS':
       return {
         ...state,
-        stockShort: action.data,
+        stockShort: action.stock,
       };
     default:
       return state;
