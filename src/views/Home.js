@@ -6,19 +6,36 @@ class Home extends Component {
   state = {
     stocks: stockData,
     result: stockData,
+    input: '',
+    portfolio: {},
   };
 
-  handleChange = event => {
-    this.setState({
-      inputVal: event.target.value,
-    });
+  addStock = (name, api_id) => {
+    let stock = {
+      name: name,
+      api_id: api_id,
+    };
+    this.setState({ portfolio: [...this.state.portfolio, stock] });
   };
 
-  renderStocks() {
-    return this.state.result.map(({ name, short_name }) => <li key={short_name}>{name}</li>);
+  renderStock() {
+    if (Object.keys(this.state.portfolio).length !== 0) {
+      return this.state.portfolio.map(({ name, api_id }) => <li key={api_id}>{name}</li>);
+    }
+  }
+
+  renderStockList() {
+    if (this.state.input.length > 0) {
+      return this.state.result.map(({ name, short_name, api_id }) => (
+        <li onClick={() => this.addStock(name, api_id)} key={api_id}>
+          {name}
+        </li>
+      ));
+    }
   }
 
   filterStocks = event => {
+    this.setState({ input: event.target.value });
     let result = [];
     result = this.state.stocks.filter(stock => {
       return stock.name.toLowerCase().search(event.target.value) !== -1;
@@ -29,8 +46,9 @@ class Home extends Component {
   render() {
     return (
       <div>
+        <ul>{this.renderStock()}</ul>
         <input type="text" placeholder="Search" onChange={this.filterStocks} />
-        <ul className="list-group">{this.renderStocks()}</ul>
+        <ul className="list-group">{this.renderStockList()}</ul>
       </div>
     );
   }
