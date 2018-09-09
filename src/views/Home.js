@@ -14,17 +14,16 @@ class Home extends Component {
     let stock = {
       name: name,
       api_id: api_id,
-      quantity: '1',
+      quantity: '0',
+      value: '0',
     };
     this.setState({ portfolio: [...this.state.portfolio, stock] });
   };
 
   editQuantity = event => {
-    const api_id = event.target.name;
-    const quantity = event.target.value;
-    let portfolio = [...this.state.portfolio];
-    const index = portfolio.findIndex(stock => stock.api_id === api_id);
-    portfolio[index].quantity = quantity;
+    let portfolio = this.state.portfolio;
+    const index = portfolio.findIndex(stock => stock.api_id === event.target.name);
+    portfolio[index].quantity = event.target.value;
     this.setState({ portfolio });
   };
 
