@@ -1,4 +1,4 @@
-# Stock tracker
+# UNDER CONSTRUCTION - Stock tracker
 
 Get data from `https://www.avanza.se/_mobile/market/stock/{id}`
 
