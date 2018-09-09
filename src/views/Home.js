@@ -14,23 +14,42 @@ class Home extends Component {
     let stock = {
       name: name,
       api_id: api_id,
+      quantity: '1',
     };
     this.setState({ portfolio: [...this.state.portfolio, stock] });
   };
 
+  editQuantity = event => {
+    const api_id = event.target.name;
+    const quantity = event.target.value;
+    let portfolio = [...this.state.portfolio];
+    const index = portfolio.findIndex(stock => stock.api_id === api_id);
+    portfolio[index].quantity = quantity;
+    this.setState({ portfolio });
+  };
+
   renderStock() {
     if (Object.keys(this.state.portfolio).length !== 0) {
-      return this.state.portfolio.map(({ name, api_id }) => <li key={api_id}>{name}</li>);
+      const stock = this.state.portfolio.map((item, i) => (
+        <li key={i}>
+          <input type="text" name={item.api_id} onChange={this.editQuantity} />
+          {item.name}
+        </li>
+      ));
+
+      return stock;
     }
   }
 
   renderStockList() {
     if (this.state.input.length > 0) {
-      return this.state.result.map(({ name, short_name, api_id }) => (
-        <li onClick={() => this.addStock(name, api_id)} key={api_id}>
-          {name}
+      const stocks = this.state.result.map((item, i) => (
+        <li onClick={() => this.addStock(item.name, item.api_id)} key={i}>
+          {item.name}
         </li>
       ));
+
+      return stocks;
     }
   }
 
