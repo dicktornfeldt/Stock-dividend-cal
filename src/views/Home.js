@@ -9,6 +9,25 @@ class Home extends Component {
     input: '',
     portfolio: {},
   };
+  componentDidMount() {
+    this.timeout = 0;
+    fetch('https://cors-anywhere.herokuapp.com/https://www.avanza.se/_mobile/market/stock/5246')
+      .then(response => response.json())
+      .then(data => {
+        console.log(data.lastPrice);
+        console.log(data.dividends);
+
+        // this.setState({ name: `${person.name.first} ${person.name.last}` })
+      })
+      // Catch any errors we hit and update the app
+      .catch(error => this.setState({ error, isLoading: false }));
+  }
+
+  componentWillUnmount() {
+    if (this.timeout) {
+      clearTimeout(this.timeout);
+    }
+  }
 
   addStock = (name, api_id) => {
     let stock = {
@@ -23,8 +42,12 @@ class Home extends Component {
   editQuantity = event => {
     let portfolio = this.state.portfolio;
     const index = portfolio.findIndex(stock => stock.api_id === event.target.name);
-    portfolio[index].quantity = event.target.value;
-    this.setState({ portfolio });
+
+    if (this.timeout) clearTimeout(this.timeout);
+    this.timeout = setTimeout(() => {
+      portfolio[index].quantity = event.target.value;
+      this.setState({ portfolio });
+    }, 700);
   };
 
   renderStock() {
