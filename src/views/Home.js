@@ -11,16 +11,6 @@ class Home extends Component {
   };
   componentDidMount() {
     this.timeout = 0;
-    fetch('https://cors-anywhere.herokuapp.com/https://www.avanza.se/_mobile/market/stock/5246')
-      .then(response => response.json())
-      .then(data => {
-        console.log(data.lastPrice);
-        console.log(data.dividends);
-
-        // this.setState({ name: `${person.name.first} ${person.name.last}` })
-      })
-      // Catch any errors we hit and update the app
-      .catch(error => this.setState({ error, isLoading: false }));
   }
 
   componentWillUnmount() {
@@ -34,22 +24,41 @@ class Home extends Component {
       name: name,
       api_id: api_id,
       quantity: '0',
-      value: '0',
+      value: 0,
+      dividends: {},
     };
     this.setState({ portfolio: [...this.state.portfolio, stock] });
   };
 
   editQuantity = event => {
+    const name = event.target.name;
+    const quantity = event.target.value;
     let portfolio = this.state.portfolio;
-    const index = portfolio.findIndex(stock => stock.api_id === event.target.name);
+    const index = portfolio.findIndex(stock => stock.api_id === name);
 
     if (this.timeout) clearTimeout(this.timeout);
     this.timeout = setTimeout(() => {
-      portfolio[index].quantity = event.target.value;
-      this.setState({ portfolio });
+      fetch(
+        `https://cors-anywhere.herokuapp.com/https://www.avanza.se/_mobile/market/stock/${name}`
+      )
+        .then(response => response.json())
+        .then(data => {
+          portfolio[index].value = data.lastPrice * parseInt(quantity, 10);
+          portfolio[index].dividends = data.dividends;
+          portfolio[index].quantity = quantity;
+          this.setState({ portfolio });
+        })
+        // Catch any errors we hit and update the app
+        .catch(error => this.setState({ error, isLoading: false }));
     }, 700);
   };
 
+  renderSum() {
+    if (Object.keys(this.state.portfolio).length !== 0) {
+      const sum = this.state.portfolio.map(item => item.value).reduce((prev, next) => prev + next);
+      return sum;
+    }
+  }
   renderStock() {
     if (Object.keys(this.state.portfolio).length !== 0) {
       const stock = this.state.portfolio.map((item, i) => (
@@ -88,6 +97,7 @@ class Home extends Component {
     return (
       <div>
         <ul>{this.renderStock()}</ul>
+        <div>{this.renderSum()}</div>
         <input type="text" placeholder="Search" onChange={this.filterStocks} />
         <ul className="list-group">{this.renderStockList()}</ul>
       </div>
