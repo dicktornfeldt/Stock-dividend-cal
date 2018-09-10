@@ -1,6 +1,83 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import stockData from '../stocklist.json';
+import styled from 'styled-components';
+import { H1 } from '../theme/typo';
+import Plus from '../images/plus.svg';
+
+const Sidebar = styled.div`
+  background-color: ${props => props.theme.grey};
+  border-right: 1px solid ${props => props.theme.border};
+  width: 30rem;
+  position: fixed;
+  font-size: 1.2rem;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  padding: 2.5rem;
+  overflow-y: scroll;
+`;
+
+const Main = styled.main`
+  display: inline-block;
+`;
+
+const Input = styled.input`
+  border: 1px solid ${props => props.theme.border};
+  padding: 0.9rem 0.7rem 0.7rem 0.7rem;
+  width: 100%;
+  &:focus {
+    outline: none;
+    border: 1px solid #747480;
+  }
+`;
+
+const StockList = styled.ul`
+  margin: 1rem 0 0 0;
+  li {
+    padding: 0.4rem;
+    border-bottom: 1px solid ${props => props.theme.border};
+    position: relative;
+    cursor: pointer;
+    &:hover {
+      background-color: white;
+    }
+    &:after {
+      width: 0.7rem;
+      height: 0.7rem;
+      top: 49%;
+      transform: translateY(-50%);
+      right: 0;
+      position: absolute;
+      content: '';
+      transition: all 0.15s ease;
+      background-image: url(${Plus});
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 0.7rem 0.7rem;
+    }
+  }
+`;
+
+const MyStocks = styled.ul`
+  border-bottom: 3px solid ${props => props.theme.border};
+  margin: 0 0 2rem 0;
+  padding: 0 0 1rem 0;
+  li {
+    margin-bottom: 0.5rem;
+    white-space: nowrap;
+  }
+  input {
+    border: 1px solid ${props => props.theme.border};
+    padding: 0.4rem 0.3rem 0.3rem 0.3rem;
+    width: 3.4rem;
+    margin-right: 0.6rem;
+    &:focus {
+      outline: none;
+      border: 1px solid #747480;
+    }
+  }
+`;
 
 class Home extends Component {
   state = {
@@ -94,13 +171,21 @@ class Home extends Component {
   };
 
   render() {
+    const portfolio = Object.keys(this.state.portfolio).length;
+
     return (
-      <div>
-        <ul>{this.renderStock()}</ul>
-        <div>{this.renderSum()}</div>
-        <input type="text" placeholder="Search" onChange={this.filterStocks} />
-        <ul className="list-group">{this.renderStockList()}</ul>
-      </div>
+      <React.Fragment>
+        <Sidebar>
+          <H1>Utdelningskalender</H1>
+          {portfolio !== 0 && <MyStocks>{this.renderStock()}</MyStocks>}
+
+          <Input type="text" placeholder="Sök aktie" onChange={this.filterStocks} />
+          <StockList>{this.renderStockList()}</StockList>
+        </Sidebar>
+        <Main>
+          <div>{this.renderSum()}</div>
+        </Main>
+      </React.Fragment>
     );
   }
 }
