@@ -2,10 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
+import { editStock } from '../../actions/stockActions';
+import Loading from '../../images/loading-2.svg';
+
 const MyStocks = styled.ul`
   border-bottom: 3px solid ${props => props.theme.border};
   margin: 0 0 2rem 0;
   padding: 0 0 1rem 0;
+  position: relative;
   li {
     margin-bottom: 0.5rem;
     white-space: nowrap;
@@ -22,6 +26,32 @@ const MyStocks = styled.ul`
   }
 `;
 
+const Load = styled.div`
+  position: absolute;
+  margin: auto;
+  padding: 1rem 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.75);
+  img {
+    width: 7rem;
+    display: inline-block;
+    height: 1.7rem;
+    position: absolute;
+    left: 0;
+    bottom: auto;
+    right: 0;
+    margin: auto;
+    top: 50%;
+    top: 49%;
+    transform: translateY(-50%);
+  }
+`;
+
 class SidebarStocklist extends React.PureComponent {
   componentDidMount() {
     this.timeout = 0;
@@ -34,26 +64,13 @@ class SidebarStocklist extends React.PureComponent {
   }
 
   editQuantity = event => {
-    const name = event.target.name;
+    const api_id = event.target.name;
     const quantity = event.target.value;
-    let portfolio = this.state.portfolio;
-    const index = portfolio.findIndex(stock => stock.api_id === name);
 
     if (this.timeout) clearTimeout(this.timeout);
     this.timeout = setTimeout(() => {
-      fetch(
-        `https://cors-anywhere.herokuapp.com/https://www.avanza.se/_mobile/market/stock/${name}`
-      )
-        .then(response => response.json())
-        .then(data => {
-          portfolio[index].value = data.lastPrice * parseInt(quantity, 10);
-          portfolio[index].dividends = data.dividends;
-          portfolio[index].quantity = quantity;
-          this.setState({ portfolio });
-        })
-        // Catch any errors we hit and update the app
-        .catch(error => this.setState({ error, isLoading: false }));
-    }, 700);
+      this.props.editStock(quantity, api_id);
+    }, 500);
   };
 
   renderStock() {
@@ -67,7 +84,14 @@ class SidebarStocklist extends React.PureComponent {
 
   render() {
     return Object.keys(this.props.stocks).length !== 0 ? (
-      <MyStocks>{this.renderStock()}</MyStocks>
+      <MyStocks>
+        {this.props.loading && (
+          <Load>
+            <img src={Loading} alt="loading" />
+          </Load>
+        )}
+        {this.renderStock()}
+      </MyStocks>
     ) : null;
   }
 }
@@ -75,7 +99,11 @@ class SidebarStocklist extends React.PureComponent {
 function mapStateToProps(state) {
   return {
     stocks: state.portfolioReducer.portfolio,
+    loading: state.portfolioReducer.loading,
   };
 }
 
-export default connect(mapStateToProps)(SidebarStocklist);
+export default connect(
+  mapStateToProps,
+  { editStock }
+)(SidebarStocklist);
