@@ -53,7 +53,13 @@ class SidebarSearch extends React.PureComponent {
   renderStockList() {
     if (this.state.input.length > 0) {
       return this.state.result.map((item, i) => (
-        <li onClick={() => this.props.addStock(item.name, item.api_id)} key={i}>
+        <li
+          onClick={() => {
+            this.props.addStock(item.name, item.api_id);
+            this.clearInput();
+          }}
+          key={i}
+        >
           {item.name}
         </li>
       ));
@@ -69,10 +75,21 @@ class SidebarSearch extends React.PureComponent {
     this.setState({ result });
   };
 
+  clearInput = () => {
+    this.setState({
+      input: '',
+    });
+  };
+
   render() {
     return (
       <React.Fragment>
-        <Input type="text" placeholder="Sök aktie" onChange={this.filterStocks} />
+        <Input
+          type="text"
+          placeholder="Sök aktie"
+          onChange={this.filterStocks}
+          value={this.state.input}
+        />
         <StockList>{this.renderStockList()}</StockList>
       </React.Fragment>
     );
