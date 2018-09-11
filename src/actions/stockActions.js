@@ -1,19 +1,12 @@
-export const addStockRequest = () => {
+export const addStock = (name, api_id) => {
   return {
-    type: 'ADD_NEW_STOCK_REQUEST',
-  };
-};
-
-export const addStockRequestSuccess = stock => {
-  return {
-    type: 'ADD_NEW_STOCK_REQUEST_SUCCESS',
-    stock: stock,
-  };
-};
-
-export const addStockRequestFailed = error => {
-  return {
-    type: 'ADD_NEW_STOCK_REQUEST_FAILED',
-    error,
+    type: 'ADD_STOCK',
+    stock: {
+      name: name,
+      api_id: api_id,
+      quantity: '0',
+      value: 0,
+      dividends: {},
+    },
   };
 };
