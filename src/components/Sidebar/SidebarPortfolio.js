@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
-import { editStock, recalcStock } from '../../actions/stockActions';
-import Loading from '../../images/loading-2.svg';
+import { editStock, deleteStock } from '../../actions/stockActions';
+import Trash from '../../images/trash.svg';
 
 const MyStocks = styled.ul`
   border-bottom: 3px solid ${props => props.theme.border};
@@ -13,6 +13,18 @@ const MyStocks = styled.ul`
   li {
     margin-bottom: 0.5rem;
     white-space: nowrap;
+    position: relative;
+  }
+  span {
+    width: 1.1rem;
+    left: -1.5rem;
+    top: 0.3rem;
+    position: absolute;
+    cursor: pointer;
+    img {
+      width: 100%;
+      height: auto;
+    }
   }
   input {
     border: 1px solid ${props => props.theme.border};
@@ -26,33 +38,7 @@ const MyStocks = styled.ul`
   }
 `;
 
-const Load = styled.div`
-  position: absolute;
-  margin: auto;
-  padding: 1rem 0;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  text-align: center;
-  width: 100%;
-  background-color: rgba(255, 255, 255, 0.75);
-  img {
-    width: 7rem;
-    display: inline-block;
-    height: 1.7rem;
-    position: absolute;
-    left: 0;
-    bottom: auto;
-    right: 0;
-    margin: auto;
-    top: 50%;
-    top: 49%;
-    transform: translateY(-50%);
-  }
-`;
-
-class SidebarStocklist extends React.PureComponent {
+class SidebarPortfolio extends React.PureComponent {
   componentDidMount() {
     this.timeout = 0;
   }
@@ -66,26 +52,33 @@ class SidebarStocklist extends React.PureComponent {
   editQuantity = event => {
     const api_id = event.target.name;
     const quantity = event.target.value;
-    const current_quantity = event.target.attributes.getNamedItem('data-quantity').value;
 
     if (this.timeout) clearTimeout(this.timeout);
     this.timeout = setTimeout(() => {
-      if (current_quantity < 1) {
-        this.props.editStock(quantity, api_id);
-      } else {
-        this.props.recalcStock(quantity, api_id);
-      }
+      this.props.editStock(quantity, api_id);
     }, 500);
+  };
+
+  deleteStock = api_id => {
+    return this.props.deleteStock(api_id);
   };
 
   renderStock() {
     return this.props.stocks.map((item, i) => (
       <li key={i}>
+        <span
+          onClick={() => {
+            this.deleteStock(item.api_id);
+          }}
+        >
+          <img src={Trash} alt="trash icon" />
+        </span>
         <input
           data-quantity={item.quantity}
           type="text"
           name={item.api_id}
           onChange={this.editQuantity}
+          placeholder="1st"
         />
         {item.name}
       </li>
@@ -94,14 +87,7 @@ class SidebarStocklist extends React.PureComponent {
 
   render() {
     return Object.keys(this.props.stocks).length !== 0 ? (
-      <MyStocks>
-        {this.props.loading && (
-          <Load>
-            <img src={Loading} alt="loading" />
-          </Load>
-        )}
-        {this.renderStock()}
-      </MyStocks>
+      <MyStocks>{this.renderStock()}</MyStocks>
     ) : null;
   }
 }
@@ -109,11 +95,10 @@ class SidebarStocklist extends React.PureComponent {
 function mapStateToProps(state) {
   return {
     stocks: state.portfolioReducer.portfolio,
-    loading: state.portfolioReducer.loading,
   };
 }
 
 export default connect(
   mapStateToProps,
-  { editStock, recalcStock }
-)(SidebarStocklist);
+  { editStock, deleteStock }
+)(SidebarPortfolio);

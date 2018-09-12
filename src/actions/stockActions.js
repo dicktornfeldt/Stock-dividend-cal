@@ -1,17 +1,4 @@
 export const addStock = (name, api_id) => {
-  return {
-    type: 'ADD_STOCK',
-    stock: {
-      name: name,
-      api_id: api_id,
-      quantity: '0',
-      value: 0,
-      dividends: {},
-    },
-  };
-};
-
-export const editStock = (quantity, api_id) => {
   return dispatch => {
     dispatch(dataRequest());
     return fetch(
@@ -19,7 +6,7 @@ export const editStock = (quantity, api_id) => {
     ).then(response => {
       if (response.ok) {
         response.json().then(data => {
-          dispatch(dataRequestSuccess(quantity, data.lastPrice, data.dividends, api_id));
+          dispatch(dataRequestSuccess(name, data.lastPrice, data.dividends, api_id));
         });
       } else {
         response.json().then(error => {
@@ -36,13 +23,17 @@ export const dataRequest = () => {
   };
 };
 
-export const dataRequestSuccess = (quantity, price, dividends, api_id) => {
+export const dataRequestSuccess = (name, price, dividends, api_id) => {
   return {
     type: 'DATA_STOCK_REQUEST_SUCCESS',
-    quantity,
-    price,
-    dividends,
-    api_id,
+    stock: {
+      name,
+      price,
+      dividends,
+      api_id,
+      quantity: '1',
+      value: price,
+    },
   };
 };
 
@@ -53,10 +44,17 @@ export const dataRequestFailed = error => {
   };
 };
 
-export const recalcStock = (quantity, api_id) => {
+export const editStock = (quantity, api_id) => {
   return {
     type: 'EDIT_STOCK',
     quantity,
+    api_id,
+  };
+};
+
+export const deleteStock = api_id => {
+  return {
+    type: 'DELETE_STOCK',
     api_id,
   };
 };

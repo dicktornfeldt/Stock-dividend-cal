@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import styled from 'styled-components';
 
 import Sidebar from '../components/Sidebar';
-
-const Main = styled.main`
-  display: inline-block;
-`;
+import Main from '../components/Main';
 
 class Home extends Component {
   render() {
@@ -19,10 +14,4 @@ class Home extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    stocks: state.stockReducer,
-  };
-}
-
-export default connect(mapStateToProps)(Home);
+export default Home;

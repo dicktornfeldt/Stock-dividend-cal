@@ -1,17 +1,11 @@
 const INITIAL_STATE = {
-  portfolio: {},
+  portfolio: [],
   error: false,
   loading: false,
 };
 
 function portfolioReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case 'ADD_STOCK':
-      return {
-        ...state,
-        portfolio: [...state.portfolio, action.stock],
-      };
-
     case 'DATA_STOCK_REQUEST':
       return {
         ...state,
@@ -22,17 +16,7 @@ function portfolioReducer(state = INITIAL_STATE, action) {
     case 'DATA_STOCK_REQUEST_SUCCESS':
       return {
         ...state,
-        portfolio: state.portfolio.map(
-          item =>
-            item.api_id === action.api_id
-              ? {
-                  ...item,
-                  quantity: action.quantity,
-                  value: action.price * action.quantity,
-                  dividends: action.dividends,
-                }
-              : item
-        ),
+        portfolio: [...state.portfolio, action.stock],
         loading: false,
       };
 
@@ -57,6 +41,12 @@ function portfolioReducer(state = INITIAL_STATE, action) {
               : item
         ),
         loading: false,
+      };
+
+    case 'DELETE_STOCK':
+      return {
+        ...state,
+        portfolio: state.portfolio.filter(item => action.api_id !== item.api_id),
       };
 
     default:

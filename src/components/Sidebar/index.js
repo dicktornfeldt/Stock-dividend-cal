@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 import SidebarSearch from './SidebarSearch';
-import SidebarStocklist from './SidebarStocklist';
+import SidebarPortfolio from './SidebarPortfolio';
 import { H1 } from '../../theme/typo';
+import Loading from '../../images/loading-2.svg';
 
 const Side = styled.div`
   background-color: ${props => props.theme.grey};
@@ -19,6 +20,33 @@ const Side = styled.div`
   overflow-y: scroll;
 `;
 
+const Load = styled.div`
+  position: absolute;
+  z-index: 99;
+  margin: auto;
+  padding: 1rem 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.75);
+  img {
+    width: 7rem;
+    display: inline-block;
+    height: 1.7rem;
+    position: absolute;
+    left: 0;
+    bottom: auto;
+    right: 0;
+    margin: auto;
+    top: 50%;
+    top: 49%;
+    transform: translateY(-50%);
+  }
+`;
+
 class Sidebar extends Component {
   renderSum() {
     if (Object.keys(this.state.portfolio).length !== 0) {
@@ -31,13 +59,13 @@ class Sidebar extends Component {
     return (
       <Side>
         <H1>Utdelningskalender</H1>
-
-        <React.Fragment>
-          <SidebarStocklist />
-          {/* <PortfolioData>{this.renderSum()}</PortfolioData> */}
-        </React.Fragment>
-
+        <SidebarPortfolio />
         <SidebarSearch />
+        {this.props.loading && (
+          <Load>
+            <img src={Loading} alt="loading" />
+          </Load>
+        )}
       </Side>
     );
   }
@@ -45,7 +73,7 @@ class Sidebar extends Component {
 
 function mapStateToProps(state) {
   return {
-    stocks: state.stockReducer,
+    loading: state.portfolioReducer.loading,
   };
 }
 
