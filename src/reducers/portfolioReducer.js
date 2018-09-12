@@ -43,6 +43,22 @@ function portfolioReducer(state = INITIAL_STATE, action) {
         loading: false,
       };
 
+    case 'EDIT_STOCK':
+      return {
+        ...state,
+        portfolio: state.portfolio.map(
+          item =>
+            item.api_id === action.api_id
+              ? {
+                  ...item,
+                  quantity: action.quantity,
+                  value: (item.value / item.quantity) * action.quantity,
+                }
+              : item
+        ),
+        loading: false,
+      };
+
     default:
       return state;
   }

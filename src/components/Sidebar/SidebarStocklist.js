@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
-import { editStock } from '../../actions/stockActions';
+import { editStock, recalcStock } from '../../actions/stockActions';
 import Loading from '../../images/loading-2.svg';
 
 const MyStocks = styled.ul`
@@ -66,17 +66,27 @@ class SidebarStocklist extends React.PureComponent {
   editQuantity = event => {
     const api_id = event.target.name;
     const quantity = event.target.value;
+    const current_quantity = event.target.attributes.getNamedItem('data-quantity').value;
 
     if (this.timeout) clearTimeout(this.timeout);
     this.timeout = setTimeout(() => {
-      this.props.editStock(quantity, api_id);
+      if (current_quantity < 1) {
+        this.props.editStock(quantity, api_id);
+      } else {
+        this.props.recalcStock(quantity, api_id);
+      }
     }, 500);
   };
 
   renderStock() {
     return this.props.stocks.map((item, i) => (
       <li key={i}>
-        <input type="text" name={item.api_id} onChange={this.editQuantity} />
+        <input
+          data-quantity={item.quantity}
+          type="text"
+          name={item.api_id}
+          onChange={this.editQuantity}
+        />
         {item.name}
       </li>
     ));
@@ -105,5 +115,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { editStock }
+  { editStock, recalcStock }
 )(SidebarStocklist);

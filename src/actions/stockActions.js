@@ -52,3 +52,11 @@ export const dataRequestFailed = error => {
     error,
   };
 };
+
+export const recalcStock = (quantity, api_id) => {
+  return {
+    type: 'EDIT_STOCK',
+    quantity,
+    api_id,
+  };
+};
