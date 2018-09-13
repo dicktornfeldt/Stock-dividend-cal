@@ -4,7 +4,8 @@
  * Usage: color: ${props => props.theme.colorWhite}
  */
 export const theme = {
-  grey: '#f7f9fa',
+  grey: 'rgba(0, 0, 32, 0.6)',
+  lightgrey: '#f7f9fa',
   border: '#e3e9ed',
   black: '#181933',
 };

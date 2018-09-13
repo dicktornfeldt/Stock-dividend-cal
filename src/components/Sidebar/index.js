@@ -8,7 +8,7 @@ import { H1 } from '../../theme/typo';
 import Loading from '../../images/loading-2.svg';
 
 const Side = styled.div`
-  background-color: ${props => props.theme.grey};
+  background-color: ${props => props.theme.lightgrey};
   border-right: 1px solid ${props => props.theme.border};
   width: 30rem;
   position: fixed;
@@ -47,18 +47,24 @@ const Load = styled.div`
   }
 `;
 
-class Sidebar extends Component {
-  renderSum() {
-    if (Object.keys(this.state.portfolio).length !== 0) {
-      const sum = this.state.portfolio.map(item => item.value).reduce((prev, next) => prev + next);
-      return sum;
-    }
+const StyledH1 = styled(H1)`
+  span {
+    font-size: 2.7rem;
+    position: relative;
+    top: 0.2rem;
   }
+`;
 
+class Sidebar extends Component {
   render() {
     return (
       <Side>
-        <H1>Utdelningskalender</H1>
+        <StyledH1>
+          Portföljen{' '}
+          <span role="img" aria-label="emoji">
+            🤑
+          </span>
+        </StyledH1>
         <SidebarPortfolio />
         <SidebarSearch />
         {this.props.loading && (

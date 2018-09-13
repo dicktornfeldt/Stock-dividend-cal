@@ -16,11 +16,23 @@ const Child = styled.div`
   width: 33%;
 `;
 
+const Cell = styled.div`
+  border-right: 1px solid ${props => props.theme.border};
+  padding: 0.8rem 0;
+  p {
+    margin: 0;
+  }
+  span {
+    color: ${props => props.theme.grey};
+  }
+`;
+
 const Head = styled.div`
-  background-color: ${props => props.theme.black};
-  border-right: 1px solid #45494c;
+  background-color: ${props => props.theme.lightgrey};
+  border-right: 1px solid ${props => props.theme.border};
+  border-top: 1px solid ${props => props.theme.border};
+  border-bottom: 1px solid ${props => props.theme.border};
   padding: 0.6rem 0;
-  color: white;
 
   p {
     font-weight: bold;
@@ -31,7 +43,6 @@ const Head = styled.div`
 
 const Content = styled.div`
   border-right: 1px solid ${props => props.theme.border};
-
   p {
     font-weight: bold;
     font-size: 3.5rem;
@@ -50,6 +61,8 @@ const DL = styled.dl`
     margin: 0 2% 0 0;
     width: 48%;
     text-align: right;
+    color: ${props => props.theme.grey};
+    font-weight: normal;
   }
   dd {
     margin: 0 0 0 2%;
@@ -57,43 +70,188 @@ const DL = styled.dl`
     text-align: left;
   }
 `;
+
+const portfolio = [
+  {
+    name: 'Investor A',
+    price: 408.8,
+    dividends: [
+      {
+        exDate: '2018-11-09',
+        amountPerShare: 4,
+        paymentDate: '2018-11-15',
+        currency: 'SEK',
+      },
+      {
+        exDate: '2018-05-09',
+        amountPerShare: 8,
+        paymentDate: '2018-05-16',
+        currency: 'SEK',
+      },
+    ],
+    api_id: '5246',
+    quantity: '2',
+    value: 817.6,
+  },
+  {
+    name: 'Axfood',
+    price: 164.8,
+    dividends: [
+      {
+        exDate: '2018-03-15',
+        amountPerShare: 7,
+        paymentDate: '2018-03-21',
+        currency: 'SEK',
+      },
+    ],
+    api_id: '5465',
+    quantity: '2',
+    value: 329.6,
+  },
+];
+
 class Main extends Component {
+  renderYearSum() {
+    if (Object.keys(this.props.portfolio).length !== 0) {
+      const yearArray = this.props.portfolio.map(stock => {
+        const quantity = stock.quantity;
+        return stock.dividends
+          .map(dividend => dividend.amountPerShare * quantity)
+          .reduce((prev, next) => prev + next);
+      });
+      const sum = yearArray.map(value => value).reduce((prev, next) => prev + next);
+      return sum.toFixed(2);
+    } else {
+      return '0';
+    }
+  }
+
+  monthAverage() {
+    return this.renderYearSum() === '0' ? '0' : (this.renderYearSum() / 12).toFixed(2);
+  }
+
+  quarterAverage() {
+    return this.renderYearSum() === '0' ? '0' : (this.renderYearSum() / 4).toFixed(2);
+  }
+
+  dayAverage() {
+    return this.renderYearSum() === '0' ? '0' : (this.renderYearSum() / 365).toFixed(2);
+  }
+
+  hourAverage() {
+    return this.renderYearSum() === '0' ? '0' : (this.renderYearSum() / 8760).toFixed(4);
+  }
+
+  minuteAverage() {
+    return this.renderYearSum() === '0' ? '0' : (this.renderYearSum() / 525600).toFixed(6);
+  }
+
   render() {
     return (
       <MainContent>
         <Parent>
           <Child>
             <Head>
-              <p>Per år</p>
+              <p>Utdelningar i år</p>
             </Head>
             <Content>
-              <p>125 000:-</p>
+              <p>{this.renderYearSum()}:-</p>
             </Content>
           </Child>
           <Child>
             <Head>
-              <p>Per månad</p>
+              <p>Snitt i månaden</p>
             </Head>
             <Content>
-              <p>125 000:-</p>
+              <p>{this.monthAverage()}:-</p>
             </Content>
           </Child>
           <Child>
             <Head>
-              <p>Per...</p>
+              <p>Snitt per...</p>
             </Head>
             <Content>
               <DL>
                 <dt>Kvartal:</dt>
-                <dd>99 000:-</dd>
+                <dd>{this.quarterAverage()}:-</dd>
                 <dt>Dag:</dt>
-                <dd>1 000:-</dd>
+                <dd>{this.dayAverage()}:-</dd>
                 <dt>Timme:</dt>
-                <dd>41:-</dd>
+                <dd>{this.hourAverage()}:-</dd>
                 <dt>Minut:</dt>
-                <dd>0,68:-</dd>
+                <dd>{this.minuteAverage()}:-</dd>
               </DL>
             </Content>
+          </Child>
+        </Parent>
+
+        <Parent>
+          <Child>
+            <Head>
+              <p>Första halvåret</p>
+            </Head>
+          </Child>
+          <Child>
+            <Head>
+              <p>Andra halvåret</p>
+            </Head>
+          </Child>
+        </Parent>
+
+        <Parent>
+          <Child>
+            <Cell>
+              <p>14 000:-</p>
+            </Cell>
+          </Child>
+          <Child>
+            <Cell>
+              <p>14 000:-</p>
+            </Cell>
+          </Child>
+        </Parent>
+        <Parent>
+          <Child>
+            <Head>
+              <p>Q1</p>
+            </Head>
+          </Child>
+          <Child>
+            <Head>
+              <p>Q2</p>
+            </Head>
+          </Child>
+          <Child>
+            <Head>
+              <p>Q3</p>
+            </Head>
+          </Child>
+          <Child>
+            <Head>
+              <p>Q4</p>
+            </Head>
+          </Child>
+        </Parent>
+        <Parent>
+          <Child>
+            <Cell>
+              <p> 14 000:-</p>
+            </Cell>
+          </Child>
+          <Child>
+            <Cell>
+              <p> 14 000:-</p>
+            </Cell>
+          </Child>
+          <Child>
+            <Cell>
+              <p> 14 000:-</p>
+            </Cell>
+          </Child>
+          <Child>
+            <Cell>
+              <p> 14 000:-</p>
+            </Cell>
           </Child>
         </Parent>
         <Parent>
@@ -158,6 +316,75 @@ class Main extends Component {
             </Head>
           </Child>
         </Parent>
+        <Parent>
+          <Child>
+            <Cell>
+              <p>14 000:-</p>
+            </Cell>
+          </Child>
+          <Child>
+            <Cell>
+              <p>14 000:-</p>
+            </Cell>
+          </Child>
+          <Child>
+            <Cell>
+              <p>14 000:-</p>
+            </Cell>
+          </Child>
+          <Child>
+            <Cell>
+              <p>14 000:-</p>
+            </Cell>
+          </Child>
+          <Child>
+            <Cell>
+              <p>14 000:-</p>
+            </Cell>
+          </Child>
+          <Child>
+            <Cell>
+              <p>14 000:-</p>
+            </Cell>
+          </Child>
+          <Child>
+            <Cell>
+              <p>14 000:-</p>
+            </Cell>
+          </Child>
+          <Child>
+            <Cell>
+              <p>14 000:-</p>
+            </Cell>
+          </Child>
+          <Child>
+            <Cell>
+              <p>14 000:-</p>
+            </Cell>
+          </Child>
+          <Child>
+            <Cell>
+              <p>14 000:-</p>
+            </Cell>
+          </Child>
+          <Child>
+            <Cell>
+              <p>14 000:-</p>
+            </Cell>
+          </Child>
+          <Child>
+            <Cell>
+              <p>14 000:-</p>
+            </Cell>
+          </Child>
+        </Parent>
+        <Parent>
+          <Child>
+            <Head>
+              <p>Aktieutdelningar</p>
+            </Head>
+          </Child>
+        </Parent>
       </MainContent>
     );
   }
@@ -165,7 +392,7 @@ class Main extends Component {
 
 function mapStateToProps(state) {
   return {
-    loading: state.portfolioReducer.loading,
+    portfolio: state.portfolioReducer.portfolio,
   };
 }
 
