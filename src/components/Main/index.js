@@ -71,45 +71,6 @@ const DL = styled.dl`
   }
 `;
 
-const portfolio = [
-  {
-    name: 'Investor A',
-    price: 408.8,
-    dividends: [
-      {
-        exDate: '2018-11-09',
-        amountPerShare: 4,
-        paymentDate: '2018-11-15',
-        currency: 'SEK',
-      },
-      {
-        exDate: '2018-05-09',
-        amountPerShare: 8,
-        paymentDate: '2018-05-16',
-        currency: 'SEK',
-      },
-    ],
-    api_id: '5246',
-    quantity: '2',
-    value: 817.6,
-  },
-  {
-    name: 'Axfood',
-    price: 164.8,
-    dividends: [
-      {
-        exDate: '2018-03-15',
-        amountPerShare: 7,
-        paymentDate: '2018-03-21',
-        currency: 'SEK',
-      },
-    ],
-    api_id: '5465',
-    quantity: '2',
-    value: 329.6,
-  },
-];
-
 class Main extends Component {
   renderYearSum() {
     if (Object.keys(this.props.portfolio).length !== 0) {

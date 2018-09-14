@@ -78,7 +78,7 @@ class SidebarPortfolio extends React.PureComponent {
           type="text"
           name={item.api_id}
           onChange={this.editQuantity}
-          placeholder="1st"
+          placeholder={item.quantity + 'st'}
         />
         {item.name}
       </li>
