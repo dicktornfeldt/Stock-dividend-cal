@@ -29,7 +29,7 @@ const MyStocks = styled.ul`
   input {
     border: 1px solid ${props => props.theme.border};
     padding: 0.4rem 0.3rem 0.3rem 0.3rem;
-    width: 3.4rem;
+    width: 3.7rem;
     margin-right: 0.6rem;
     &:focus {
       outline: none;

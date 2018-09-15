@@ -18,7 +18,7 @@ const Child = styled.div`
 
 const Cell = styled.div`
   border-right: 1px solid ${props => props.theme.border};
-  padding: 0.8rem 0;
+  padding: 0.6rem 0;
   p {
     margin: 0;
   }
