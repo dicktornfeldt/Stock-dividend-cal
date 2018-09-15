@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import SidebarSearch from './SidebarSearch';
 import SidebarPortfolio from './SidebarPortfolio';
 import { H1 } from '../../theme/typo';
-import Loading from '../../images/loading-2.svg';
+import Loading from '../../images/loading.svg';
 
 const Side = styled.div`
   background-color: ${props => props.theme.lightgrey};
