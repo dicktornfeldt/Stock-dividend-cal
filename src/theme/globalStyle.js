@@ -44,13 +44,17 @@ export const GlobalStyle = createGlobalStyle`
     background-color: transparent;
     transition: all .15s ease;
     cursor: pointer;
+    color: #4630EB;
     &:visited,
     &:hover,
     &:focus,
     &:active {
-      text-decoration: none;
-      outline: 0;
+      text-decoration: underline;
     }
+  }
+
+  p {
+    margin: 2rem 0;
   }
 
   ul {

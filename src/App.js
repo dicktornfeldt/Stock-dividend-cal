@@ -8,6 +8,9 @@ import { theme } from './theme/theme';
 import Home from './views/Home';
 import FAQ from './components/FAQ';
 
+const title = 'Din utdelningskalender';
+const desc = 'Bygg din aktieportfölj och få en överblick över dina utdelningar';
+
 class App extends Component {
   render() {
     return (
@@ -16,10 +19,10 @@ class App extends Component {
         <ThemeProvider theme={theme}>
           <React.Fragment>
             <Helmet>
-              <title>Portföljen</title>
-              <meta name="description" content="Lorem ipsum" />
-              <meta property="og:title" content="Portföljen" />
-              <meta property="og:description" content="Lorem ipsum" />
+              <title>{title}</title>
+              <meta name="description" content={desc} />
+              <meta property="og:title" content="{title}" />
+              <meta property="og:description" content={desc} />
               <meta property="og:url" content={window.location.href} />
               {/* <meta property="og:image" content={NextoryMetaImg} /> */}
               <meta name="twitter:title" content="Portföljen" />
