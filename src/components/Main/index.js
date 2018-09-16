@@ -72,7 +72,31 @@ const DL = styled.dl`
 `;
 
 class Main extends Component {
-  renderYearSum() {
+  state = {
+    yearSum: '0',
+  };
+
+  componentDidMount() {
+    // if (Object.keys(this.props.portfolio).length !== 0) {
+    //   let groupKey = 0;
+
+    //   const groups = this.props.portfolio.map(stock => {
+    //     return stock.dividends.reduce((r, date) => {
+    //       const m = date.exDate.split('-')[1];
+    //       r[m]
+    //         ? r[m].data.push(date)
+    //         : (r[m] = { group: String(groupKey++), data: [date], quantity: stock.quantity });
+    //       return r;
+    //     }, {});
+    //   });
+
+    //   var result = Object.keys(groups).map(keys => {
+    //     return groups[keys];
+    //   });
+
+    //   console.log(result);
+    // }
+
     if (Object.keys(this.props.portfolio).length !== 0) {
       const yearArray = this.props.portfolio.map(stock => {
         const quantity = stock.quantity;
@@ -81,30 +105,10 @@ class Main extends Component {
           .reduce((prev, next) => prev + next);
       });
       const sum = yearArray.map(value => value).reduce((prev, next) => prev + next);
-      return sum.toFixed(2);
+      return this.setState({ yearSum: sum.toFixed(2) });
     } else {
-      return '0';
+      return this.setState({ yearSum: '0' });
     }
-  }
-
-  monthAverage() {
-    return this.renderYearSum() === '0' ? '0' : (this.renderYearSum() / 12).toFixed(2);
-  }
-
-  quarterAverage() {
-    return this.renderYearSum() === '0' ? '0' : (this.renderYearSum() / 4).toFixed(2);
-  }
-
-  dayAverage() {
-    return this.renderYearSum() === '0' ? '0' : (this.renderYearSum() / 365).toFixed(2);
-  }
-
-  hourAverage() {
-    return this.renderYearSum() === '0' ? '0' : (this.renderYearSum() / 8760).toFixed(4);
-  }
-
-  minuteAverage() {
-    return this.renderYearSum() === '0' ? '0' : (this.renderYearSum() / 525600).toFixed(6);
   }
 
   render() {
@@ -116,7 +120,7 @@ class Main extends Component {
               <p>Utdelningar i år</p>
             </Head>
             <Content>
-              <p>{this.renderYearSum()}:-</p>
+              <p>{this.state.yearSum}:-</p>
             </Content>
           </Child>
           <Child>
@@ -124,7 +128,7 @@ class Main extends Component {
               <p>Snitt i månaden</p>
             </Head>
             <Content>
-              <p>{this.monthAverage()}:-</p>
+              <p>{this.state.yearSum === '0' ? '0' : (this.state.yearSum / 12).toFixed(2)}:-</p>
             </Content>
           </Child>
           <Child>
@@ -134,13 +138,19 @@ class Main extends Component {
             <Content>
               <DL>
                 <dt>Kvartal:</dt>
-                <dd>{this.quarterAverage()}:-</dd>
+                <dd>{this.state.yearSum === '0' ? '0' : (this.state.yearSum / 4).toFixed(2)}:-</dd>
                 <dt>Dag:</dt>
-                <dd>{this.dayAverage()}:-</dd>
+                <dd>
+                  {this.state.yearSum === '0' ? '0' : (this.state.yearSum / 365).toFixed(2)}:-
+                </dd>
                 <dt>Timme:</dt>
-                <dd>{this.hourAverage()}:-</dd>
+                <dd>
+                  {this.state.yearSum === '0' ? '0' : (this.state.yearSum / 8760).toFixed(4)}:-
+                </dd>
                 <dt>Minut:</dt>
-                <dd>{this.minuteAverage()}:-</dd>
+                <dd>
+                  {this.state.yearSum === '0' ? '0' : (this.state.yearSum / 525600).toFixed(6)}:-
+                </dd>
               </DL>
             </Content>
           </Child>
