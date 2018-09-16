@@ -79,7 +79,6 @@ class Main extends Component {
   componentDidMount() {
     // if (Object.keys(this.props.portfolio).length !== 0) {
     //   let groupKey = 0;
-
     //   const groups = this.props.portfolio.map(stock => {
     //     return stock.dividends.reduce((r, date) => {
     //       const m = date.exDate.split('-')[1];
@@ -89,11 +88,9 @@ class Main extends Component {
     //       return r;
     //     }, {});
     //   });
-
     //   var result = Object.keys(groups).map(keys => {
     //     return groups[keys];
     //   });
-
     //   console.log(result);
     // }
 
@@ -107,7 +104,25 @@ class Main extends Component {
       const sum = yearArray.map(value => value).reduce((prev, next) => prev + next);
       return this.setState({ yearSum: sum.toFixed(2) });
     } else {
-      return this.setState({ yearSum: '0' });
+      return '0';
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    // only update chart if the data has changed
+    if (prevProps.portfolio !== this.props.portfolio) {
+      if (Object.keys(this.props.portfolio).length !== 0) {
+        const yearArray = this.props.portfolio.map(stock => {
+          const quantity = stock.quantity;
+          return stock.dividends
+            .map(dividend => dividend.amountPerShare * quantity)
+            .reduce((prev, next) => prev + next);
+        });
+        const sum = yearArray.map(value => value).reduce((prev, next) => prev + next);
+        return this.setState({ yearSum: sum.toFixed(2) });
+      } else {
+        return '0';
+      }
     }
   }
 
