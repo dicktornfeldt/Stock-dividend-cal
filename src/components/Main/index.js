@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
+import { calculateYearSum } from '../../helpers';
+
 const MainContent = styled.main`
   margin-left: 30rem;
   text-align: center;
@@ -93,36 +95,14 @@ class Main extends Component {
     //   });
     //   console.log(result);
     // }
-
-    if (Object.keys(this.props.portfolio).length !== 0) {
-      const yearArray = this.props.portfolio.map(stock => {
-        const quantity = stock.quantity;
-        return stock.dividends
-          .map(dividend => dividend.amountPerShare * quantity)
-          .reduce((prev, next) => prev + next);
-      });
-      const sum = yearArray.map(value => value).reduce((prev, next) => prev + next);
-      return this.setState({ yearSum: sum.toFixed(2) });
-    } else {
-      return '0';
-    }
+    const year = calculateYearSum(this.props.portfolio);
+    this.setState({ yearSum: year });
   }
 
   componentDidUpdate(prevProps) {
-    // only update chart if the data has changed
     if (prevProps.portfolio !== this.props.portfolio) {
-      if (Object.keys(this.props.portfolio).length !== 0) {
-        const yearArray = this.props.portfolio.map(stock => {
-          const quantity = stock.quantity;
-          return stock.dividends
-            .map(dividend => dividend.amountPerShare * quantity)
-            .reduce((prev, next) => prev + next);
-        });
-        const sum = yearArray.map(value => value).reduce((prev, next) => prev + next);
-        return this.setState({ yearSum: sum.toFixed(2) });
-      } else {
-        return '0';
-      }
+      const year = calculateYearSum(this.props.portfolio);
+      this.setState({ yearSum: year });
     }
   }
 
