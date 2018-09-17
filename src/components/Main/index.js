@@ -100,19 +100,6 @@ class Main extends Component {
   render() {
     const { dividends } = this.state;
 
-    if (dividends != null) {
-      // const may = dividends.filter(month => month['05']).map(month => month['05']);
-      // console.log(may);
-      // if (may.length > 0) {
-      //   const calc = may
-      //     .map(dividend => dividend.amountPerShare * dividend.quantity)
-      //     .reduce((prev, next) => prev + next);
-      //   console.log(calc);
-      // }
-
-      const test = calcDividendMonth(dividends, '05');
-      console.log(test);
-    }
     return (
       <MainContent>
         <Parent>

@@ -24,12 +24,15 @@ export const dataRequest = () => {
 };
 
 export const dataRequestSuccess = (name, price, dividends, api_id) => {
+  // remove object
+  const dividends2018 = dividends.filter(item => !item.exDate.includes('2017'));
+
   return {
     type: 'DATA_STOCK_REQUEST_SUCCESS',
     stock: {
       name,
       price,
-      dividends,
+      dividends: dividends2018,
       api_id,
       quantity: '1',
       value: price,
