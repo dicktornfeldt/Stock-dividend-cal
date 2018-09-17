@@ -12,3 +12,28 @@ export function calculateYearSum(portfolio) {
     return '0';
   }
 }
+
+export function groupDividendMonth(portfolio) {
+  if (Object.keys(portfolio).length !== 0) {
+    const groups = portfolio.map(stock => {
+      return stock.dividends.reduce((i, date) => {
+        const month = date.exDate.split('-')[1];
+        i[month]
+          ? i[month].data.push(date)
+          : (i[month] = {
+              amountPerShare: date.amountPerShare,
+              quantity: stock.quantity,
+              name: stock.name,
+              month: month,
+            });
+        return i;
+      }, {});
+    });
+    const result = Object.keys(groups).map(keys => {
+      return groups[keys];
+    });
+    return result;
+  } else {
+    return null;
+  }
+}

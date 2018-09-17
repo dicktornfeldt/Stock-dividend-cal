@@ -85,6 +85,7 @@ class SidebarSearch extends React.PureComponent {
     return (
       <React.Fragment>
         <Input
+          autoFocus
           type="text"
           placeholder="Sök aktie"
           onChange={this.filterStocks}

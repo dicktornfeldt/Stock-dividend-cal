@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-import { calculateYearSum } from '../../helpers';
+import { calculateYearSum, groupDividendMonth } from '../../helpers';
 
 const MainContent = styled.main`
   margin-left: 30rem;
@@ -76,33 +76,24 @@ const DL = styled.dl`
 class Main extends Component {
   state = {
     yearSum: '0',
+    dividends: null,
   };
 
   componentDidMount() {
-    // if (Object.keys(this.props.portfolio).length !== 0) {
-    //   let groupKey = 0;
-    //   const groups = this.props.portfolio.map(stock => {
-    //     return stock.dividends.reduce((r, date) => {
-    //       const m = date.exDate.split('-')[1];
-    //       r[m]
-    //         ? r[m].data.push(date)
-    //         : (r[m] = { group: String(groupKey++), data: [date], quantity: stock.quantity });
-    //       return r;
-    //     }, {});
-    //   });
-    //   var result = Object.keys(groups).map(keys => {
-    //     return groups[keys];
-    //   });
-    //   console.log(result);
-    // }
-    const year = calculateYearSum(this.props.portfolio);
-    this.setState({ yearSum: year });
+    const yearSum = calculateYearSum(this.props.portfolio);
+    this.setState({ yearSum });
+
+    const dividends = groupDividendMonth(this.props.portfolio);
+    this.setState({ dividends });
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.portfolio !== this.props.portfolio) {
-      const year = calculateYearSum(this.props.portfolio);
-      this.setState({ yearSum: year });
+      const yearSum = calculateYearSum(this.props.portfolio);
+      this.setState({ yearSum });
+
+      const dividends = groupDividendMonth(this.props.portfolio);
+      this.setState({ dividends });
     }
   }
 
@@ -115,7 +106,7 @@ class Main extends Component {
               <p>Utdelningar i år</p>
             </Head>
             <Content>
-              <p>{this.state.yearSum}:-</p>
+              <p>{(this.state.yearSum / 1).toFixed(0)}:-</p>
             </Content>
           </Child>
           <Child>
@@ -123,7 +114,7 @@ class Main extends Component {
               <p>Snitt i månaden</p>
             </Head>
             <Content>
-              <p>{this.state.yearSum === '0' ? '0' : (this.state.yearSum / 12).toFixed(2)}:-</p>
+              <p>{this.state.yearSum === '0' ? '0' : (this.state.yearSum / 12).toFixed(0)}:-</p>
             </Content>
           </Child>
           <Child>
