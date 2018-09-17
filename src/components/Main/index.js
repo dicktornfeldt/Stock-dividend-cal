@@ -75,30 +75,44 @@ const DL = styled.dl`
 
 class Main extends Component {
   state = {
-    yearSum: '0',
     dividends: null,
   };
 
   componentDidMount() {
-    const yearSum = calculateYearSum(this.props.portfolio);
-    this.setState({ yearSum });
-
-    const dividends = groupDividendMonth(this.props.portfolio);
-    this.setState({ dividends });
+    this.setState({ dividends: groupDividendMonth(this.props.portfolio) });
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.portfolio !== this.props.portfolio) {
-      const yearSum = calculateYearSum(this.props.portfolio);
-      this.setState({ yearSum });
-
-      const dividends = groupDividendMonth(this.props.portfolio);
-      this.setState({ dividends });
+      this.setState({ dividends: groupDividendMonth(this.props.portfolio) });
     }
   }
 
   render() {
     const { dividends } = this.state;
+
+    const jan = dividends != null ? Math.round(calcDividendMonth(dividends, '01')) : '0';
+    const feb = dividends != null ? Math.round(calcDividendMonth(dividends, '02')) : '0';
+    const mar = dividends != null ? Math.round(calcDividendMonth(dividends, '03')) : '0';
+    const apr = dividends != null ? Math.round(calcDividendMonth(dividends, '04')) : '0';
+    const may = dividends != null ? Math.round(calcDividendMonth(dividends, '05')) : '0';
+    const jun = dividends != null ? Math.round(calcDividendMonth(dividends, '06')) : '0';
+    const jul = dividends != null ? Math.round(calcDividendMonth(dividends, '07')) : '0';
+    const aug = dividends != null ? Math.round(calcDividendMonth(dividends, '08')) : '0';
+    const sep = dividends != null ? Math.round(calcDividendMonth(dividends, '09')) : '0';
+    const okt = dividends != null ? Math.round(calcDividendMonth(dividends, '10')) : '0';
+    const nov = dividends != null ? Math.round(calcDividendMonth(dividends, '11')) : '0';
+    const dec = dividends != null ? Math.round(calcDividendMonth(dividends, '12')) : '0';
+
+    const q1 = jan + feb + mar;
+    const q2 = apr + may + jun;
+    const q3 = jul + aug + sep;
+    const q4 = okt + nov + dec;
+
+    const half1 = q1 + q2;
+    const half2 = q3 + q4;
+
+    const year = half1 + half2;
 
     return (
       <MainContent>
@@ -108,7 +122,7 @@ class Main extends Component {
               <p>Utdelningar i år</p>
             </Head>
             <Content>
-              <p>{(this.state.yearSum / 1).toFixed(0)}:-</p>
+              <p>{year}:-</p>
             </Content>
           </Child>
           <Child>
@@ -116,7 +130,7 @@ class Main extends Component {
               <p>Snitt i månaden</p>
             </Head>
             <Content>
-              <p>{this.state.yearSum === '0' ? '0' : (this.state.yearSum / 12).toFixed(0)}:-</p>
+              <p>{Math.round(year / 12)}:-</p>
             </Content>
           </Child>
           <Child>
@@ -126,19 +140,13 @@ class Main extends Component {
             <Content>
               <DL>
                 <dt>Kvartal:</dt>
-                <dd>{this.state.yearSum === '0' ? '0' : (this.state.yearSum / 4).toFixed(2)}:-</dd>
+                <dd>{(year / 4).toFixed(2)}:-</dd>
                 <dt>Dag:</dt>
-                <dd>
-                  {this.state.yearSum === '0' ? '0' : (this.state.yearSum / 365).toFixed(2)}:-
-                </dd>
+                <dd>{(year / 365).toFixed(2)}:-</dd>
                 <dt>Timme:</dt>
-                <dd>
-                  {this.state.yearSum === '0' ? '0' : (this.state.yearSum / 8760).toFixed(4)}:-
-                </dd>
+                <dd>{(year / 8760).toFixed(4)}:-</dd>
                 <dt>Minut:</dt>
-                <dd>
-                  {this.state.yearSum === '0' ? '0' : (this.state.yearSum / 525600).toFixed(6)}:-
-                </dd>
+                <dd>{(year / 525600).toFixed(6)}:-</dd>
               </DL>
             </Content>
           </Child>
@@ -160,12 +168,12 @@ class Main extends Component {
         <Parent>
           <Child>
             <Cell>
-              <p>14 000:-</p>
+              <p>{half1}:-</p>
             </Cell>
           </Child>
           <Child>
             <Cell>
-              <p>14 000:-</p>
+              <p>{half2}:-</p>
             </Cell>
           </Child>
         </Parent>
@@ -194,22 +202,22 @@ class Main extends Component {
         <Parent>
           <Child>
             <Cell>
-              <p> 14 000:-</p>
+              <p>{q1}:-</p>
             </Cell>
           </Child>
           <Child>
             <Cell>
-              <p> 14 000:-</p>
+              <p>{q2}:-</p>
             </Cell>
           </Child>
           <Child>
             <Cell>
-              <p> 14 000:-</p>
+              <p>{q3}:-</p>
             </Cell>
           </Child>
           <Child>
             <Cell>
-              <p> 14 000:-</p>
+              <p>{q4}:-</p>
             </Cell>
           </Child>
         </Parent>
@@ -278,62 +286,62 @@ class Main extends Component {
         <Parent>
           <Child>
             <Cell>
-              <p>{dividends != null ? calcDividendMonth(dividends, '01') : '0'}:-</p>
+              <p>{jan}:-</p>
             </Cell>
           </Child>
           <Child>
             <Cell>
-              <p>{dividends != null ? calcDividendMonth(dividends, '02') : '0'}:-</p>
+              <p>{feb}:-</p>
             </Cell>
           </Child>
           <Child>
             <Cell>
-              <p>{dividends != null ? calcDividendMonth(dividends, '03') : '0'}:-</p>
+              <p>{mar}:-</p>
             </Cell>
           </Child>
           <Child>
             <Cell>
-              <p>{dividends != null ? calcDividendMonth(dividends, '04') : '0'}:-</p>
+              <p>{apr}:-</p>
             </Cell>
           </Child>
           <Child>
             <Cell>
-              <p>{dividends != null ? calcDividendMonth(dividends, '05') : '0'}:-</p>
+              <p>{may}:-</p>
             </Cell>
           </Child>
           <Child>
             <Cell>
-              <p>{dividends != null ? calcDividendMonth(dividends, '06') : '0'}:-</p>
+              <p>{jun}:-</p>
             </Cell>
           </Child>
           <Child>
             <Cell>
-              <p>{dividends != null ? calcDividendMonth(dividends, '07') : '0'}:-</p>
+              <p>{jul}:-</p>
             </Cell>
           </Child>
           <Child>
             <Cell>
-              <p>{dividends != null ? calcDividendMonth(dividends, '08') : '0'}:-</p>
+              <p>{aug}:-</p>
             </Cell>
           </Child>
           <Child>
             <Cell>
-              <p>{dividends != null ? calcDividendMonth(dividends, '09') : '0'}:-</p>
+              <p>{sep}:-</p>
             </Cell>
           </Child>
           <Child>
             <Cell>
-              <p>{dividends != null ? calcDividendMonth(dividends, '10') : '0'}:-</p>
+              <p>{okt}:-</p>
             </Cell>
           </Child>
           <Child>
             <Cell>
-              <p>{dividends != null ? calcDividendMonth(dividends, '11') : '0'}:-</p>
+              <p>{nov}:-</p>
             </Cell>
           </Child>
           <Child>
             <Cell>
-              <p>{dividends != null ? calcDividendMonth(dividends, '12') : '0'}:-</p>
+              <p>{dec}:-</p>
             </Cell>
           </Child>
         </Parent>
