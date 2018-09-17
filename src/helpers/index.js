@@ -37,3 +37,15 @@ export function groupDividendMonth(portfolio) {
     return null;
   }
 }
+
+export function calcDividendMonth(dividends, month) {
+  const m = dividends.filter(outer => outer[month]).map(outer => outer[month]);
+
+  if (m.length > 0) {
+    return m
+      .map(dividend => dividend.amountPerShare * dividend.quantity)
+      .reduce((prev, next) => prev + next);
+  } else {
+    return 0;
+  }
+}

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-import { calculateYearSum, groupDividendMonth } from '../../helpers';
+import { calculateYearSum, groupDividendMonth, calcDividendMonth } from '../../helpers';
 
 const MainContent = styled.main`
   margin-left: 30rem;
@@ -98,6 +98,21 @@ class Main extends Component {
   }
 
   render() {
+    const { dividends } = this.state;
+
+    if (dividends != null) {
+      // const may = dividends.filter(month => month['05']).map(month => month['05']);
+      // console.log(may);
+      // if (may.length > 0) {
+      //   const calc = may
+      //     .map(dividend => dividend.amountPerShare * dividend.quantity)
+      //     .reduce((prev, next) => prev + next);
+      //   console.log(calc);
+      // }
+
+      const test = calcDividendMonth(dividends, '05');
+      console.log(test);
+    }
     return (
       <MainContent>
         <Parent>
@@ -276,62 +291,62 @@ class Main extends Component {
         <Parent>
           <Child>
             <Cell>
-              <p>14 000:-</p>
+              <p>{dividends != null ? calcDividendMonth(dividends, '01') : '0'}:-</p>
             </Cell>
           </Child>
           <Child>
             <Cell>
-              <p>14 000:-</p>
+              <p>{dividends != null ? calcDividendMonth(dividends, '02') : '0'}:-</p>
             </Cell>
           </Child>
           <Child>
             <Cell>
-              <p>14 000:-</p>
+              <p>{dividends != null ? calcDividendMonth(dividends, '03') : '0'}:-</p>
             </Cell>
           </Child>
           <Child>
             <Cell>
-              <p>14 000:-</p>
+              <p>{dividends != null ? calcDividendMonth(dividends, '04') : '0'}:-</p>
             </Cell>
           </Child>
           <Child>
             <Cell>
-              <p>14 000:-</p>
+              <p>{dividends != null ? calcDividendMonth(dividends, '05') : '0'}:-</p>
             </Cell>
           </Child>
           <Child>
             <Cell>
-              <p>14 000:-</p>
+              <p>{dividends != null ? calcDividendMonth(dividends, '06') : '0'}:-</p>
             </Cell>
           </Child>
           <Child>
             <Cell>
-              <p>14 000:-</p>
+              <p>{dividends != null ? calcDividendMonth(dividends, '07') : '0'}:-</p>
             </Cell>
           </Child>
           <Child>
             <Cell>
-              <p>14 000:-</p>
+              <p>{dividends != null ? calcDividendMonth(dividends, '08') : '0'}:-</p>
             </Cell>
           </Child>
           <Child>
             <Cell>
-              <p>14 000:-</p>
+              <p>{dividends != null ? calcDividendMonth(dividends, '09') : '0'}:-</p>
             </Cell>
           </Child>
           <Child>
             <Cell>
-              <p>14 000:-</p>
+              <p>{dividends != null ? calcDividendMonth(dividends, '10') : '0'}:-</p>
             </Cell>
           </Child>
           <Child>
             <Cell>
-              <p>14 000:-</p>
+              <p>{dividends != null ? calcDividendMonth(dividends, '11') : '0'}:-</p>
             </Cell>
           </Child>
           <Child>
             <Cell>
-              <p>14 000:-</p>
+              <p>{dividends != null ? calcDividendMonth(dividends, '12') : '0'}:-</p>
             </Cell>
           </Child>
         </Parent>
