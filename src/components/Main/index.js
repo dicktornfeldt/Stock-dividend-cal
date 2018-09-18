@@ -33,6 +33,7 @@ const ChildGrow = styled(Child)`
   }
   div {
     border-right: none;
+    padding-bottom: 0;
   }
 `;
 
