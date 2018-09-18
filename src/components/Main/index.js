@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-import { getDividendMonth } from '../../helpers';
+import { getDividendMonth, getMonthList } from '../../helpers';
 
 const MainContent = styled.main`
   margin-left: 30rem;
@@ -18,8 +18,28 @@ const Child = styled.div`
   width: 33%;
 `;
 
+const ChildGrow = styled(Child)`
+  flex: 1;
+  border-right: 1px solid ${props => props.theme.border};
+  border-bottom: 1px solid ${props => props.theme.border};
+  ul {
+    li {
+      margin: 0 0.5rem 1rem 0.5rem;
+      span {
+        font-size: 1.1rem;
+        display: block;
+      }
+    }
+  }
+  div {
+    border-right: none;
+  }
+`;
+
 const Cell = styled.div`
   border-right: 1px solid ${props => props.theme.border};
+  flex-grow: 1;
+  flex: 1;
   padding: 0.6rem 0;
   p {
     margin: 0;
@@ -74,6 +94,23 @@ const DL = styled.dl`
 `;
 
 class Main extends Component {
+  getList = month => {
+    if (Object.keys(this.props.portfolio).length !== 0) {
+      const list = getMonthList(this.props.portfolio, month);
+      let response = '-';
+      if (list != null) {
+        response = list.stocks.map((item, i) => (
+          <li key={i}>
+            <span>{item.name}</span> {list.dividendArray[i]}:-
+          </li>
+        ));
+      }
+      return response;
+    } else {
+      return '-';
+    }
+  };
+
   render() {
     const { portfolio } = this.props;
 
@@ -337,6 +374,68 @@ class Main extends Component {
               <p>Aktieutdelningar</p>
             </Head>
           </Child>
+        </Parent>
+        <Parent>
+          <ChildGrow>
+            <Cell>
+              <ul>{this.getList('2018-01')}</ul>
+            </Cell>
+          </ChildGrow>
+          <ChildGrow>
+            <Cell>
+              <ul>{this.getList('2018-02')}</ul>
+            </Cell>
+          </ChildGrow>
+          <ChildGrow>
+            <Cell>
+              <ul>{this.getList('2018-03')}</ul>
+            </Cell>
+          </ChildGrow>
+          <ChildGrow>
+            <Cell>
+              <ul>{this.getList('2018-04')}</ul>
+            </Cell>
+          </ChildGrow>
+          <ChildGrow>
+            <Cell>
+              <ul>{this.getList('2018-05')}</ul>
+            </Cell>
+          </ChildGrow>
+          <ChildGrow>
+            <Cell>
+              <ul>{this.getList('2018-06')}</ul>
+            </Cell>
+          </ChildGrow>
+          <ChildGrow>
+            <Cell>
+              <ul>{this.getList('2018-07')}</ul>
+            </Cell>
+          </ChildGrow>
+          <ChildGrow>
+            <Cell>
+              <ul>{this.getList('2018-08')}</ul>
+            </Cell>
+          </ChildGrow>
+          <ChildGrow>
+            <Cell>
+              <ul>{this.getList('2018-09')}</ul>
+            </Cell>
+          </ChildGrow>
+          <ChildGrow>
+            <Cell>
+              <ul>{this.getList('2018-10')}</ul>
+            </Cell>
+          </ChildGrow>
+          <ChildGrow>
+            <Cell>
+              <ul>{this.getList('2018-11')}</ul>
+            </Cell>
+          </ChildGrow>
+          <ChildGrow>
+            <Cell>
+              <ul>{this.getList('2018-12')}</ul>
+            </Cell>
+          </ChildGrow>
         </Parent>
       </MainContent>
     );

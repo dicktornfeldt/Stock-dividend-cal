@@ -81,3 +81,33 @@ export function getDividendMonth(portfolio, month) {
     return 0;
   }
 }
+
+export function getMonthList(portfolio, month) {
+  if (Object.keys(portfolio).length !== 0) {
+    const stocks = portfolio
+      .filter(element => element.dividends.some(subElement => subElement.exDate.includes(month)))
+      .map(element => {
+        let n = Object.assign({}, element, {
+          dividends: element.dividends.filter(subElement => subElement.exDate.includes(month)),
+        });
+        return n;
+      });
+
+    if (Object.keys(stocks).length !== 0) {
+      const dividendArray = stocks.map(({ quantity, dividends }) => {
+        return dividends
+          .map(item => item.amountPerShare * quantity)
+          .reduce((prev, next) => prev + next);
+      });
+      const $data = {
+        stocks,
+        dividendArray,
+      };
+      return $data;
+    } else {
+      return null;
+    }
+  } else {
+    return null;
+  }
+}
