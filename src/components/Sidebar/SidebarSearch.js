@@ -19,16 +19,19 @@ const Input = styled.input`
 const StockList = styled.ul`
   margin: 1rem 0 0 0;
   li {
-    padding: 0.4rem;
+    padding: 1rem 0.4rem;
     border-bottom: 1px solid ${props => props.theme.border};
     position: relative;
     cursor: pointer;
+    @media (min-width: 1024px) {
+      padding: 0.4rem;
+    }
     &:hover {
       background-color: white;
     }
     &:after {
-      width: 0.7rem;
-      height: 0.7rem;
+      width: 1rem;
+      height: 1rem;
       top: 49%;
       transform: translateY(-50%);
       right: 0;
@@ -38,7 +41,12 @@ const StockList = styled.ul`
       background-image: url(${Plus});
       background-repeat: no-repeat;
       background-position: center;
-      background-size: 0.7rem 0.7rem;
+      background-size: 1rem 1rem;
+      @media (min-width: 1024px) {
+        width: 0.8rem;
+        height: 0.8rem;
+        background-size: 0.8rem 0.8rem;
+      }
     }
   }
 `;
@@ -70,7 +78,7 @@ class SidebarSearch extends React.PureComponent {
     this.setState({ input: event.target.value });
     let result = [];
     result = this.state.stocks.filter(stock => {
-      return stock.name.toLowerCase().search(event.target.value) !== -1;
+      return stock.name.toLowerCase().search(event.target.value.toLowerCase()) !== -1;
     });
     this.setState({ result });
   };

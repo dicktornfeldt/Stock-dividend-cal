@@ -13,7 +13,8 @@ const Side = styled.div`
   background-color: ${props => props.theme.lightgrey};
   border-right: 1px solid ${props => props.theme.border};
   width: 100%;
-  position: absolute;
+  position: fixed;
+  z-index: 99;
   font-size: 1.2rem;
   top: 0;
   bottom: 0;

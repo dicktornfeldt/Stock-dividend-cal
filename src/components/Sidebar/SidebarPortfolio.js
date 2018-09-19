@@ -11,16 +11,23 @@ const MyStocks = styled.ul`
   padding: 0 0 1rem 0;
   position: relative;
   li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
     white-space: nowrap;
     position: relative;
+    @media (min-width: 1024px) {
+      margin-bottom: 0.5rem;
+    }
   }
   span {
     width: 1.1rem;
-    left: -1.5rem;
-    top: 0.3rem;
+    left: -2rem;
+    top: 0.5rem;
     position: absolute;
     cursor: pointer;
+    @media (min-width: 1024px) {
+      left: -1.5rem;
+      top: 0.3rem;
+    }
     img {
       width: 100%;
       height: auto;
@@ -28,9 +35,13 @@ const MyStocks = styled.ul`
   }
   input {
     border: 1px solid ${props => props.theme.border};
-    padding: 0.4rem 0.3rem 0.3rem 0.3rem;
-    width: 3.7rem;
+    padding: 0.6rem 0.5rem 0.5rem 0.5rem;
+    width: 4rem;
     margin-right: 0.6rem;
+    @media (min-width: 1024px) {
+      padding: 0.4rem 0.3rem 0.3rem 0.3rem;
+      width: 3.7rem;
+    }
     &:focus {
       outline: none;
       border: 1px solid #747480;
