@@ -44,27 +44,35 @@ const ModalContainer = styled.section`
     z-index: 999;
     background: #ffffff;
     border-radius: 1.6rem;
-    padding: 2.5rem 3.5rem;
+    padding: 2rem 1.7rem;
     box-shadow: 0 3px 19px rgba(0, 0, 0, 0.1);
+    @media (min-width: 1024px) {
+      padding: 2.5rem 3.5rem;
+    }
   }
 `;
 
 const H2 = styled.h2`
-  font-size: 2.5rem;
+  font-size: 1.9rem;
   position: relative;
+  @media (min-width: 1024px) {
+    font-size: 2.5rem;
+  }
   span {
-    position: absolute;
     top: -0.2rem;
     margin-left: 1rem;
     font-size: 120%;
+    @media (min-width: 1024px) {
+      position: absolute;
+    }
   }
 `;
 
 const Close = styled.span`
   width: 2.4rem;
   height: 2.4rem;
-  top: 2rem;
-  right: 2rem;
+  top: 1rem;
+  right: 1rem;
   position: absolute;
   font-weight: bold;
   color: white;
@@ -74,6 +82,10 @@ const Close = styled.span`
   border-radius: 100%;
   cursor: pointer;
   background-color: ${props => props.theme.black};
+  @media (min-width: 1024px) {
+    top: 2rem;
+    right: 2rem;
+  }
 `;
 
 const Modal = props => {

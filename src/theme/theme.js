@@ -8,6 +8,7 @@ export const theme = {
   lightgrey: '#f7f9fa',
   border: '#e3e9ed',
   black: '#181933',
-  blue: '#4630EB',
+  primary: '#4630EB',
   hoverblue: '#5844ed',
+  secondary: '#A3A1F7',
 };

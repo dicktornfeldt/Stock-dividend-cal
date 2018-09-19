@@ -3,37 +3,58 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 import { getDividendMonth, getMonthList } from '../../helpers';
+import YearTable from './YearTable';
 
 const MainContent = styled.main`
-  margin-left: 30rem;
   text-align: center;
+  @media (min-width: 1024px) {
+    margin-left: 30rem;
+  }
 `;
 
 const Parent = styled.section`
   display: flex;
+  flex-direction: column;
+  @media (min-width: 1024px) {
+    flex-direction: row;
+  }
 `;
 
 const Child = styled.div`
-  flex-grow: 1;
-  width: 33%;
+  width: 100%;
+  @media (min-width: 1024px) {
+    flex-grow: 1;
+    width: 33%;
+  }
 `;
 
 const ChildGrow = styled(Child)`
   flex: 1;
   border-right: 1px solid ${props => props.theme.border};
   border-bottom: 1px solid ${props => props.theme.border};
+  position: relative;
   ul {
-    margin: 0.8rem 0;
+    margin: 0.8rem 2.4rem;
+    @media (min-width: 1024px) {
+      margin: 0.8rem 0;
+    }
     li {
-      margin: 0 0.5rem 2rem 0.5rem;
+      margin: 0 0 1.3rem 0;
+      text-align: left;
+      @media (min-width: 1024px) {
+        margin: 0 0.5rem 2rem 0.5rem;
+        text-align: center;
+      }
       &:last-child {
         margin-bottom: 0;
       }
       span {
-        font-size: 1.1rem;
-        display: block;
-        line-height: 1.2;
-        margin-bottom: 0.4rem;
+        @media (min-width: 1024px) {
+          margin-bottom: 0.4rem;
+          line-height: 1.2;
+          font-size: 1.1rem;
+          display: block;
+        }
       }
     }
   }
@@ -61,6 +82,9 @@ const Head = styled.div`
   border-top: 1px solid ${props => props.theme.border};
   border-bottom: 1px solid ${props => props.theme.border};
   padding: 0.6rem 0;
+  @media (min-width: 1024px) {
+    padding: 0.8rem 0;
+  }
 
   p {
     font-weight: bold;
@@ -75,7 +99,10 @@ const Content = styled.div`
     font-weight: bold;
     font-size: 3.5rem;
     margin: 0;
-    padding: 3rem 0;
+    padding: 1.8rem 0;
+    @media (min-width: 1024px) {
+      padding: 3rem 0;
+    }
   }
 `;
 
@@ -96,6 +123,16 @@ const DL = styled.dl`
     margin: 0 0 0 2%;
     width: 48%;
     text-align: left;
+  }
+`;
+
+const MonthSpan = styled.span`
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.1rem;
+  @media (min-width: 1024px) {
+    display: none;
   }
 `;
 
@@ -143,6 +180,27 @@ class Main extends Component {
 
     const year = half1 + half2;
 
+    const data = {
+      jan,
+      feb,
+      mar,
+      apr,
+      may,
+      jun,
+      jul,
+      aug,
+      sep,
+      okt,
+      nov,
+      dec,
+      q1,
+      q2,
+      q3,
+      q4,
+      half1,
+      half2,
+    };
+
     return (
       <MainContent>
         <Parent>
@@ -181,199 +239,8 @@ class Main extends Component {
           </Child>
         </Parent>
 
-        <Parent>
-          <Child>
-            <Head>
-              <p>Första halvåret</p>
-            </Head>
-          </Child>
-          <Child>
-            <Head>
-              <p>Andra halvåret</p>
-            </Head>
-          </Child>
-        </Parent>
+        <YearTable data={data} />
 
-        <Parent>
-          <Child>
-            <Cell>
-              <p>{half1}:-</p>
-            </Cell>
-          </Child>
-          <Child>
-            <Cell>
-              <p>{half2}:-</p>
-            </Cell>
-          </Child>
-        </Parent>
-        <Parent>
-          <Child>
-            <Head>
-              <p>Q1</p>
-            </Head>
-          </Child>
-          <Child>
-            <Head>
-              <p>Q2</p>
-            </Head>
-          </Child>
-          <Child>
-            <Head>
-              <p>Q3</p>
-            </Head>
-          </Child>
-          <Child>
-            <Head>
-              <p>Q4</p>
-            </Head>
-          </Child>
-        </Parent>
-        <Parent>
-          <Child>
-            <Cell>
-              <p>{q1}:-</p>
-            </Cell>
-          </Child>
-          <Child>
-            <Cell>
-              <p>{q2}:-</p>
-            </Cell>
-          </Child>
-          <Child>
-            <Cell>
-              <p>{q3}:-</p>
-            </Cell>
-          </Child>
-          <Child>
-            <Cell>
-              <p>{q4}:-</p>
-            </Cell>
-          </Child>
-        </Parent>
-        <Parent>
-          <Child>
-            <Head>
-              <p>Jan</p>
-            </Head>
-          </Child>
-          <Child>
-            <Head>
-              <p>Feb</p>
-            </Head>
-          </Child>
-          <Child>
-            <Head>
-              <p>Mar</p>
-            </Head>
-          </Child>
-          <Child>
-            <Head>
-              <p>Apr</p>
-            </Head>
-          </Child>
-          <Child>
-            <Head>
-              <p>Maj</p>
-            </Head>
-          </Child>
-          <Child>
-            <Head>
-              <p>Jun</p>
-            </Head>
-          </Child>
-          <Child>
-            <Head>
-              <p>Jul</p>
-            </Head>
-          </Child>
-          <Child>
-            <Head>
-              <p>Aug</p>
-            </Head>
-          </Child>
-          <Child>
-            <Head>
-              <p>Sep</p>
-            </Head>
-          </Child>
-          <Child>
-            <Head>
-              <p>Okt</p>
-            </Head>
-          </Child>
-          <Child>
-            <Head>
-              <p>Nov</p>
-            </Head>
-          </Child>
-          <Child>
-            <Head>
-              <p>Dec</p>
-            </Head>
-          </Child>
-        </Parent>
-        <Parent>
-          <Child>
-            <Cell>
-              <p>{jan}:-</p>
-            </Cell>
-          </Child>
-          <Child>
-            <Cell>
-              <p>{feb}:-</p>
-            </Cell>
-          </Child>
-          <Child>
-            <Cell>
-              <p>{mar}:-</p>
-            </Cell>
-          </Child>
-          <Child>
-            <Cell>
-              <p>{apr}:-</p>
-            </Cell>
-          </Child>
-          <Child>
-            <Cell>
-              <p>{may}:-</p>
-            </Cell>
-          </Child>
-          <Child>
-            <Cell>
-              <p>{jun}:-</p>
-            </Cell>
-          </Child>
-          <Child>
-            <Cell>
-              <p>{jul}:-</p>
-            </Cell>
-          </Child>
-          <Child>
-            <Cell>
-              <p>{aug}:-</p>
-            </Cell>
-          </Child>
-          <Child>
-            <Cell>
-              <p>{sep}:-</p>
-            </Cell>
-          </Child>
-          <Child>
-            <Cell>
-              <p>{okt}:-</p>
-            </Cell>
-          </Child>
-          <Child>
-            <Cell>
-              <p>{nov}:-</p>
-            </Cell>
-          </Child>
-          <Child>
-            <Cell>
-              <p>{dec}:-</p>
-            </Cell>
-          </Child>
-        </Parent>
         <Parent>
           <Child>
             <Head>
@@ -384,61 +251,73 @@ class Main extends Component {
         <Parent>
           <ChildGrow>
             <Cell>
+              <MonthSpan>Jan</MonthSpan>
               <ul>{this.getList('2018-01')}</ul>
             </Cell>
           </ChildGrow>
           <ChildGrow>
             <Cell>
+              <MonthSpan>Feb</MonthSpan>
               <ul>{this.getList('2018-02')}</ul>
             </Cell>
           </ChildGrow>
           <ChildGrow>
             <Cell>
+              <MonthSpan>Mar</MonthSpan>
               <ul>{this.getList('2018-03')}</ul>
             </Cell>
           </ChildGrow>
           <ChildGrow>
             <Cell>
+              <MonthSpan>Apr</MonthSpan>
               <ul>{this.getList('2018-04')}</ul>
             </Cell>
           </ChildGrow>
           <ChildGrow>
             <Cell>
+              <MonthSpan>Maj</MonthSpan>
               <ul>{this.getList('2018-05')}</ul>
             </Cell>
           </ChildGrow>
           <ChildGrow>
             <Cell>
+              <MonthSpan>Jun</MonthSpan>
               <ul>{this.getList('2018-06')}</ul>
             </Cell>
           </ChildGrow>
           <ChildGrow>
             <Cell>
+              <MonthSpan>Jul</MonthSpan>
               <ul>{this.getList('2018-07')}</ul>
             </Cell>
           </ChildGrow>
           <ChildGrow>
             <Cell>
+              <MonthSpan>Aug</MonthSpan>
               <ul>{this.getList('2018-08')}</ul>
             </Cell>
           </ChildGrow>
           <ChildGrow>
             <Cell>
+              <MonthSpan>Sep</MonthSpan>
               <ul>{this.getList('2018-09')}</ul>
             </Cell>
           </ChildGrow>
           <ChildGrow>
             <Cell>
+              <MonthSpan>Okt</MonthSpan>
               <ul>{this.getList('2018-10')}</ul>
             </Cell>
           </ChildGrow>
           <ChildGrow>
             <Cell>
+              <MonthSpan>Nov</MonthSpan>
               <ul>{this.getList('2018-11')}</ul>
             </Cell>
           </ChildGrow>
           <ChildGrow>
             <Cell>
+              <MonthSpan>Dec</MonthSpan>
               <ul>{this.getList('2018-12')}</ul>
             </Cell>
           </ChildGrow>

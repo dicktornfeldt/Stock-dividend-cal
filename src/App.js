@@ -8,7 +8,7 @@ import { theme } from './theme/theme';
 import Home from './views/Home';
 import FAQ from './components/FAQ';
 
-const title = 'Din utdelningskalender';
+const title = 'Portföljen';
 const desc = 'Bygg din aktieportfölj och få en överblick över dina utdelningar';
 
 class App extends Component {
@@ -28,7 +28,7 @@ class App extends Component {
               <meta name="twitter:title" content="Portföljen" />
             </Helmet>
             <Switch>
-              <Route exact path="/" component={Home} />
+              <Route all path="/" component={Home} />
               {/* <Route component={NoMatch404} /> */}
             </Switch>
             <FAQ />
