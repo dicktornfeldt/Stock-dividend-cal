@@ -2,7 +2,7 @@ export const addStock = (name, api_id) => {
   return dispatch => {
     dispatch(dataRequest());
     return fetch(
-      `https://cors-anywhere.herokuapp.com/https://www.avanza.se/_mobile/market/stock/${api_id}`
+      `https://thawing-tundra-85399.herokuapp.com/https://www.avanza.se/_mobile/market/stock/${api_id}`
     ).then(response => {
       if (response.ok) {
         response.json().then(data => {
