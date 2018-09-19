@@ -25,11 +25,12 @@ export const dataRequest = () => {
 
 export const dataRequestSuccess = (name, price, dividends, api_id) => {
   // remove object
+  const decodedName = name.replace(/&amp;/g, '&');
 
   return {
     type: 'DATA_STOCK_REQUEST_SUCCESS',
     stock: {
-      name,
+      name: decodedName,
       price,
       dividends,
       api_id,

@@ -23,17 +23,22 @@ const ChildGrow = styled(Child)`
   border-right: 1px solid ${props => props.theme.border};
   border-bottom: 1px solid ${props => props.theme.border};
   ul {
+    margin: 0.8rem 0;
     li {
-      margin: 0 0.5rem 1rem 0.5rem;
+      margin: 0 0.5rem 2rem 0.5rem;
+      &:last-child {
+        margin-bottom: 0;
+      }
       span {
         font-size: 1.1rem;
         display: block;
+        line-height: 1.2;
+        margin-bottom: 0.4rem;
       }
     }
   }
   div {
     border-right: none;
-    padding-bottom: 0;
   }
 `;
 
@@ -102,7 +107,7 @@ class Main extends Component {
       if (list != null) {
         response = list.stocks.map((item, i) => (
           <li key={i}>
-            <span>{item.name}</span> {list.dividendArray[i]}:-
+            <span>{item.name}</span> {parseFloat(list.dividendArray[i].toFixed(2))}:-
           </li>
         ));
       }
