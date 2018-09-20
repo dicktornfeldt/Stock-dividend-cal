@@ -2,7 +2,7 @@ export const addStock = (name, api_id) => {
   return dispatch => {
     dispatch(dataRequest());
     return fetch(
-      `https://thawing-tundra-85399.herokuapp.com/https://www.avanza.se/_mobile/market/stock/${api_id}`
+      `https://limitless-garden-26844.herokuapp.com/https://www.avanza.se/_mobile/market/stock/${api_id}`
     ).then(response => {
       if (response.ok) {
         response.json().then(data => {
