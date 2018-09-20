@@ -95,7 +95,7 @@ class SidebarSearch extends React.PureComponent {
         <Input
           autoFocus
           type="text"
-          placeholder="Sök aktie"
+          placeholder="Sök och lägg till aktie"
           onChange={this.filterStocks}
           value={this.state.input}
         />

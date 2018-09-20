@@ -41,6 +41,7 @@ const ChildGrow = styled(Child)`
     li {
       margin: 0 0 1.3rem 0;
       text-align: left;
+      font-family: ${props => props.theme.secondaryfont};
       @media (min-width: 1024px) {
         margin: 0 0.5rem 2rem 0.5rem;
         text-align: center;
@@ -49,6 +50,7 @@ const ChildGrow = styled(Child)`
         margin-bottom: 0;
       }
       span {
+        font-family: ${props => props.theme.primaryfont};
         @media (min-width: 1024px) {
           margin-bottom: 0.4rem;
           line-height: 1.2;
@@ -96,6 +98,7 @@ const Head = styled.div`
 const Content = styled.div`
   border-right: 1px solid ${props => props.theme.border};
   p {
+    font-family: ${props => props.theme.secondaryfont};
     font-weight: bold;
     font-size: 3.5rem;
     margin: 0;
@@ -123,6 +126,7 @@ const DL = styled.dl`
     margin: 0 0 0 2%;
     width: 48%;
     text-align: left;
+    font-family: ${props => props.theme.secondaryfont};
   }
 `;
 
@@ -206,7 +210,7 @@ class Main extends Component {
         <Parent>
           <Child>
             <Head>
-              <p>Utdelningar i år</p>
+              <p>Totalt utdelningar 2018</p>
             </Head>
             <Content>
               <p>{year}:-</p>
@@ -244,7 +248,7 @@ class Main extends Component {
         <Parent>
           <Child>
             <Head>
-              <p>Aktieutdelningar</p>
+              <p>Bolagens utdelningar</p>
             </Head>
           </Child>
         </Parent>

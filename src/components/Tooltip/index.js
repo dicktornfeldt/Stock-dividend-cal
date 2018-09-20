@@ -35,7 +35,7 @@ const TooltipContainer = styled.div`
 
 const Tooltip = () => (
   <TooltipContainer>
-    <p>Sök efter och ladda in din första aktie. Välj sedan hur många du äger av den.</p>
+    <p>Sök efter och lägg till din första aktie. Välj sedan hur många du äger av den.</p>
   </TooltipContainer>
 );
 

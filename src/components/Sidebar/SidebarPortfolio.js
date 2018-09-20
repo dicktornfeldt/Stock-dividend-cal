@@ -35,6 +35,7 @@ const MyStocks = styled.ul`
   }
   input {
     border: 1px solid ${props => props.theme.border};
+    font-family: ${props => props.theme.secondaryfont};
     padding: 0.6rem 0.5rem 0.5rem 0.5rem;
     width: 4rem;
     margin-right: 0.6rem;

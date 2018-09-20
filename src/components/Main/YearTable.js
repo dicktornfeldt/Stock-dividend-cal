@@ -33,6 +33,7 @@ const Cell = styled.div`
   }
   p {
     margin: 0;
+    font-family: 'Roboto Mono', monospace;
   }
   span {
     color: ${props => props.theme.grey};
