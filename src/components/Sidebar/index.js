@@ -89,7 +89,7 @@ class Sidebar extends Component {
 
 function mapStateToProps(state) {
   return {
-    loading: state.portfolioReducer.loading,
+    loading: state.appReducer.loading,
     portfolio: state.portfolioReducer.portfolio,
   };
 }

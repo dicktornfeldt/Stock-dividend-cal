@@ -1,30 +1,13 @@
 const INITIAL_STATE = {
   portfolio: [],
-  error: false,
-  loading: false,
 };
 
 function portfolioReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case 'DATA_STOCK_REQUEST':
-      return {
-        ...state,
-        error: false,
-        loading: true,
-      };
-
     case 'DATA_STOCK_REQUEST_SUCCESS':
       return {
         ...state,
         portfolio: [...state.portfolio, action.stock],
-        loading: false,
-      };
-
-    case 'DATA_STOCK_REQUEST_FAILED':
-      return {
-        ...state,
-        error: true,
-        loading: false,
       };
 
     case 'EDIT_STOCK':
@@ -40,7 +23,6 @@ function portfolioReducer(state = INITIAL_STATE, action) {
                 }
               : item
         ),
-        loading: false,
       };
 
     case 'DELETE_STOCK':
