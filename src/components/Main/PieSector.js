@@ -31,54 +31,56 @@ const PieSector = props => {
   let sector = null;
   let data = null;
   let names = null;
+  let dataset = null;
+  let options = null;
 
   if (Object.keys(props.portfolio).length !== 0) {
     sector = props.portfolio.map(stock => {
       return stock.sector ? stock.sector : null;
     });
-  }
 
-  let counts = {},
-    i,
-    value;
-  for (i = 0; i < sector.length; i++) {
-    value = sector[i];
-    if (typeof counts[value] === 'undefined') {
-      counts[value] = 1;
-    } else {
-      counts[value]++;
+    let counts = {},
+      i,
+      value;
+    for (i = 0; i < sector.length; i++) {
+      value = sector[i];
+      if (typeof counts[value] === 'undefined') {
+        counts[value] = 1;
+      } else {
+        counts[value]++;
+      }
     }
+
+    if (counts) {
+      let object = Object.keys(counts).map(e => ({ name: e, count: counts[e] }));
+      console.log(object);
+      object = object.filter(function(obj) {
+        return obj.name !== 'null';
+      });
+      console.log(object);
+
+      names = object.map(stock => {
+        return stock.name;
+      });
+      data = object.map(stock => {
+        return stock.count;
+      });
+    }
+
+    dataset = {
+      labels: names,
+      datasets: [
+        {
+          data: data,
+          backgroundColor: getRandomColorEach(names.length),
+        },
+      ],
+    };
+
+    options = {
+      legend: { display: false },
+    };
   }
-
-  if (counts) {
-    let object = Object.keys(counts).map(e => ({ name: e, count: counts[e] }));
-    console.log(object);
-    object = object.filter(function(obj) {
-      return obj.name !== 'null';
-    });
-    console.log(object);
-
-    names = object.map(stock => {
-      return stock.name;
-    });
-    data = object.map(stock => {
-      return stock.count;
-    });
-  }
-
-  const dataset = {
-    labels: names,
-    datasets: [
-      {
-        data: data,
-        backgroundColor: getRandomColorEach(names.length),
-      },
-    ],
-  };
-
-  const options = {
-    legend: { display: false },
-  };
 
   return Object.keys(props.portfolio).length !== 0 ? (
     <PieWrapper>

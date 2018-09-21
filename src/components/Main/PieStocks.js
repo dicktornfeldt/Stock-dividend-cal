@@ -32,6 +32,8 @@ const getRandomColorEach = count => {
 const PieStocks = props => {
   let names = null;
   let value = null;
+  let data = null;
+  let options = null;
 
   if (Object.keys(props.portfolio).length !== 0) {
     names = props.portfolio.map(stock => {
@@ -40,21 +42,21 @@ const PieStocks = props => {
     value = props.portfolio.map(stock => {
       return stock.value;
     });
+
+    data = {
+      labels: names,
+      datasets: [
+        {
+          data: value,
+          backgroundColor: getRandomColorEach(names.length),
+        },
+      ],
+    };
+
+    options = {
+      legend: { display: false },
+    };
   }
-
-  const data = {
-    labels: names,
-    datasets: [
-      {
-        data: value,
-        backgroundColor: getRandomColorEach(names.length),
-      },
-    ],
-  };
-
-  const options = {
-    legend: { display: false },
-  };
 
   return Object.keys(props.portfolio).length !== 0 ? (
     <PieWrapper>
