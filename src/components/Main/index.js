@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { getDividendMonth } from '../../helpers';
 import PorfolioSum from './PorfolioSum';
 import PieStocks from './PieStocks';
+import PieSector from './PieSector';
 import DividendSumTable from './DividendSumTable';
 import YearTable from './YearTable';
 import StockTable from './StockTable';
@@ -77,7 +78,7 @@ class Main extends React.PureComponent {
       <MainContent>
         <PorfolioSum portfolioSum={portfolioSum} DA={DA} />
         <PieStocks portfolio={portfolio} />
-        <PieStocks portfolio={portfolio} />
+        <PieSector portfolio={portfolio} />
         <DividendSumTable year={year} />
         <YearTable data={data} />
         <StockTable />

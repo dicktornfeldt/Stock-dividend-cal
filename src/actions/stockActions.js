@@ -6,9 +6,11 @@ export const addStock = (name, api_id) => {
     ).then(response => {
       if (response.ok) {
         response.json().then(data => {
-          dispatch(
-            dataRequestSuccess(name, data.lastPrice, data.dividends, api_id, data.company.sector)
-          );
+          let sector = '';
+          if (data.company.sector) {
+            sector = data.company.sector;
+          }
+          dispatch(dataRequestSuccess(name, data.lastPrice, data.dividends, api_id, sector));
         });
       } else {
         response.json().then(error => {

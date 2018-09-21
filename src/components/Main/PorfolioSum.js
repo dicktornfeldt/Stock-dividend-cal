@@ -2,17 +2,23 @@ import React from 'react';
 import styled from 'styled-components';
 
 const PortfolioContainer = styled.div`
-  display: inline-block;
-  width: 33%;
-  padding: 3.5rem 0 1rem 0;
+  padding: 2.5rem 1.5rem 1rem 1.5rem;
+  @media (min-width: 1024px) {
+    display: inline-block;
+    width: 33%;
+    padding: 5rem 0 1rem 0;
+  }
   span {
     color: ${props => props.theme.grey};
   }
   p {
     font-family: ${props => props.theme.secondaryfont};
-    margin: 0 0 1.5rem 0;
+    margin: 0 0 2rem 0;
     font-weight: bold;
     font-size: 3.5rem;
+    @media (min-width: 1024px) {
+      margin: 0 0 2.5rem 0;
+    }
   }
 `;
 
