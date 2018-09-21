@@ -20,8 +20,10 @@ class Main extends React.PureComponent {
   render() {
     const { portfolio } = this.props;
 
-    const portfolioSum = portfolio.map(value => value.value).reduce((prev, next) => prev + next);
-
+    let portfolioSum = 0;
+    if (Object.keys(portfolio).length !== 0) {
+      portfolioSum = portfolio.map(value => value.value).reduce((prev, next) => prev + next);
+    }
     const jan = portfolio != null ? Math.round(getDividendMonth(portfolio, '2018-01')) : 0;
     const feb = portfolio != null ? Math.round(getDividendMonth(portfolio, '2018-02')) : 0;
     const mar = portfolio != null ? Math.round(getDividendMonth(portfolio, '2018-03')) : 0;
@@ -45,7 +47,10 @@ class Main extends React.PureComponent {
 
     const year = half1 + half2;
 
-    const DA = (year / portfolioSum) * 100;
+    let DA = 0;
+    if (Object.keys(portfolio).length !== 0) {
+      DA = (year / portfolioSum) * 100;
+    }
 
     const data = {
       jan,
