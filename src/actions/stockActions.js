@@ -6,7 +6,9 @@ export const addStock = (name, api_id) => {
     ).then(response => {
       if (response.ok) {
         response.json().then(data => {
-          dispatch(dataRequestSuccess(name, data.lastPrice, data.dividends, api_id));
+          dispatch(
+            dataRequestSuccess(name, data.lastPrice, data.dividends, api_id, data.company.sector)
+          );
         });
       } else {
         response.json().then(error => {
@@ -23,7 +25,7 @@ export const dataRequest = () => {
   };
 };
 
-export const dataRequestSuccess = (name, price, dividends, api_id) => {
+export const dataRequestSuccess = (name, price, dividends, api_id, sector) => {
   // remove object
   const decodedName = name.replace(/&amp;/g, '&');
 
@@ -36,6 +38,7 @@ export const dataRequestSuccess = (name, price, dividends, api_id) => {
       api_id,
       quantity: '1',
       value: price,
+      sector,
     },
   };
 };

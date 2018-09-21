@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Parent = styled.section`
+const Parent = styled.div`
   width: 50%;
   display: inline-block;
   vertical-align: top;
