@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Pie } from 'react-chartjs-2';
+import { colors } from '../../helpers/';
 
 const PieWrapper = styled.div`
   margin: 0.5rem 0 2.2rem 0;
@@ -15,17 +16,6 @@ const PieWrapper = styled.div`
     margin-bottom: 1rem;
   }
 `;
-
-const getRandomColorEach = count => {
-  let data = [];
-  for (var i = 0; i < count; i++) {
-    const value = (Math.random() * 0xff) | 0;
-    const grayscale = (value << 16) | (value << 8) | value;
-    const color = '#' + grayscale.toString(16);
-    data.push(color);
-  }
-  return data;
-};
 
 const PieSector = props => {
   let sector = null;
@@ -72,7 +62,7 @@ const PieSector = props => {
       datasets: [
         {
           data: data,
-          backgroundColor: getRandomColorEach(names.length),
+          backgroundColor: colors,
         },
       ],
     };

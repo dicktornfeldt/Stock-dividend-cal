@@ -8,7 +8,7 @@ export const theme = {
   lightgrey: '#f7f9fa',
   border: '#e3e9ed',
   black: '#181933',
-  primary: '#4630EB',
+  primary: '#3c40c6',
   hoverblue: '#5844ed',
   secondary: '#A3A1F7',
   primaryfont:

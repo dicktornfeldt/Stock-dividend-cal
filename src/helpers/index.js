@@ -111,3 +111,35 @@ export function getMonthList(portfolio, month) {
     return null;
   }
 }
+
+export const colors = [
+  '#154360',
+  '#1b4f72',
+
+  '#1a5276',
+  '#21618c',
+
+  '#1f618d',
+  '#2874a6',
+
+  '#2471a3',
+  '#2e86c1',
+
+  '#2980b9',
+  '#3498db',
+
+  '#5dade2',
+  '#5499c7',
+
+  '#7fb3d5',
+  '#85c1e9',
+
+  '#a9cce3',
+  '#aed6f1',
+
+  '#d4e6f1',
+  '#d6eaf8',
+
+  '#eaf2f8',
+  '#ebf5fb',
+];

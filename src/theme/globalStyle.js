@@ -44,7 +44,7 @@ export const GlobalStyle = createGlobalStyle`
     background-color: transparent;
     transition: all .15s ease;
     cursor: pointer;
-    color: #4630EB;
+    color: #3c40c6;
     &:visited,
     &:hover,
     &:focus,
