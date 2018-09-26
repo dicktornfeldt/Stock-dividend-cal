@@ -38,7 +38,7 @@ const Load = styled.div`
   }
 `;
 
-const SidebarLoading = () => {
+function SidebarLoading() {
   return (
     <Load>
       <span>
@@ -47,6 +47,6 @@ const SidebarLoading = () => {
       </span>
     </Load>
   );
-};
+}
 
 export default SidebarLoading;

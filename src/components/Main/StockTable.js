@@ -116,6 +116,8 @@ class StockTable extends React.PureComponent {
   };
 
   render() {
+    console.log('Stocktable component');
+
     return (
       <React.Fragment>
         <Parent>

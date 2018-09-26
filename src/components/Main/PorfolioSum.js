@@ -22,16 +22,21 @@ const PortfolioContainer = styled.div`
   }
 `;
 
-const PorfolioSum = props =>
-  props.portfolioSum ? (
-    <PortfolioContainer>
-      <React.Fragment>
-        <span>Portföljvärde</span>
-        <p>{Math.round(props.portfolioSum)}:-</p>
-        <span>Direktavkastning</span>
-        <p>{props.DA.toFixed(2)}%</p>
-      </React.Fragment>
-    </PortfolioContainer>
-  ) : null;
+class PorfolioSum extends React.Component {
+  render() {
+    console.log('PorfolioSum component');
+
+    return this.props.portfolioSum ? (
+      <PortfolioContainer>
+        <React.Fragment>
+          <span>Portföljvärde</span>
+          <p>{Math.round(this.props.portfolioSum)}:-</p>
+          <span>Direktavkastning</span>
+          <p>{this.props.DA.toFixed(2)}%</p>
+        </React.Fragment>
+      </PortfolioContainer>
+    ) : null;
+  }
+}
 
 export default PorfolioSum;

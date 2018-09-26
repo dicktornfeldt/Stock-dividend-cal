@@ -67,6 +67,8 @@ class Sidebar extends Component {
   };
 
   render() {
+    console.log('Sidebar component');
+
     return (
       <React.Fragment>
         <Side sidebarVisible={this.state.sidebarVisible}>

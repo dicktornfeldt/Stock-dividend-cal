@@ -17,67 +17,70 @@ const PieWrapper = styled.div`
   }
 `;
 
-const PieSector = props => {
-  let sector = null;
-  let data = null;
-  let names = null;
-  let dataset = null;
-  let options = null;
+class PieSector extends React.PureComponent {
+  render() {
+    console.log('PieSector component');
 
-  if (Object.keys(props.portfolio).length !== 0) {
-    sector = props.portfolio.map(stock => {
-      return stock.sector ? stock.sector : null;
-    });
+    let sector = null;
+    let data = null;
+    let names = null;
+    let dataset = null;
+    let options = null;
 
-    let counts = {},
-      i,
-      value;
-    for (i = 0; i < sector.length; i++) {
-      value = sector[i];
-      if (typeof counts[value] === 'undefined') {
-        counts[value] = 1;
-      } else {
-        counts[value]++;
+    if (Object.keys(this.props.portfolio).length !== 0) {
+      sector = this.props.portfolio.map(stock => {
+        return stock.sector ? stock.sector : null;
+      });
+
+      let counts = {},
+        i,
+        value;
+      for (i = 0; i < sector.length; i++) {
+        value = sector[i];
+        if (typeof counts[value] === 'undefined') {
+          counts[value] = 1;
+        } else {
+          counts[value]++;
+        }
       }
+
+      if (counts) {
+        let object = Object.keys(counts).map(e => ({ name: e, count: counts[e] }));
+
+        object = object.filter(function(obj) {
+          return obj.name !== 'null';
+        });
+
+        names = object.map(stock => {
+          return stock.name;
+        });
+        data = object.map(stock => {
+          return stock.count;
+        });
+      }
+
+      dataset = {
+        labels: names,
+        datasets: [
+          {
+            data: data,
+            backgroundColor: colors,
+          },
+        ],
+      };
+
+      options = {
+        legend: { display: false },
+      };
     }
 
-    if (counts) {
-      let object = Object.keys(counts).map(e => ({ name: e, count: counts[e] }));
-      console.log(object);
-      object = object.filter(function(obj) {
-        return obj.name !== 'null';
-      });
-      console.log(object);
-
-      names = object.map(stock => {
-        return stock.name;
-      });
-      data = object.map(stock => {
-        return stock.count;
-      });
-    }
-
-    dataset = {
-      labels: names,
-      datasets: [
-        {
-          data: data,
-          backgroundColor: colors,
-        },
-      ],
-    };
-
-    options = {
-      legend: { display: false },
-    };
+    return Object.keys(this.props.portfolio).length !== 0 ? (
+      <PieWrapper>
+        <p>Branschfördelning</p>
+        <Pie data={dataset} options={options} />
+      </PieWrapper>
+    ) : null;
   }
-
-  return Object.keys(props.portfolio).length !== 0 ? (
-    <PieWrapper>
-      <p>Branschfördelning</p>
-      <Pie data={dataset} options={options} />
-    </PieWrapper>
-  ) : null;
-};
+}
 
 export default PieSector;

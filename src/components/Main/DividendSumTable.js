@@ -70,45 +70,49 @@ const DL = styled.dl`
   }
 `;
 
-const DividendSumTable = props => {
-  return (
-    <Parent>
-      <Child>
-        <Head>
-          <p>Totalt utdelningar 2018</p>
-        </Head>
-        <Content>
-          <p>{props.year}:-</p>
-        </Content>
-      </Child>
-      <Child>
-        <Head>
-          <p>Snitt i månaden</p>
-        </Head>
-        <Content>
-          <p>{Math.round(props.year / 12)}:-</p>
-        </Content>
-      </Child>
-      <Child>
-        <Head>
-          <p>Snitt per...</p>
-        </Head>
-        <Content>
-          <DL>
-            <dt>Kvartal:</dt>
-            <dd>{(props.year / 4).toFixed(2)}:-</dd>
-            <dt>Dag:</dt>
-            <dd>{(props.year / 365).toFixed(2)}:-</dd>
-            <dt>Timme:</dt>
-            <dd>{(props.year / 8760).toFixed(4)}:-</dd>
-            <dt>Minut:</dt>
-            <dd>{(props.year / 525600).toFixed(6)}:-</dd>
-          </DL>
-        </Content>
-      </Child>
-    </Parent>
-  );
-};
+class DividendSumTable extends React.PureComponent {
+  render() {
+    console.log('DividendSumTable Component');
+
+    return (
+      <Parent>
+        <Child>
+          <Head>
+            <p>Totalt utdelningar 2018</p>
+          </Head>
+          <Content>
+            <p>{this.props.year}:-</p>
+          </Content>
+        </Child>
+        <Child>
+          <Head>
+            <p>Snitt i månaden</p>
+          </Head>
+          <Content>
+            <p>{Math.round(this.props.year / 12)}:-</p>
+          </Content>
+        </Child>
+        <Child>
+          <Head>
+            <p>Snitt per...</p>
+          </Head>
+          <Content>
+            <DL>
+              <dt>Kvartal:</dt>
+              <dd>{(this.props.year / 4).toFixed(2)}:-</dd>
+              <dt>Dag:</dt>
+              <dd>{(this.props.year / 365).toFixed(2)}:-</dd>
+              <dt>Timme:</dt>
+              <dd>{(this.props.year / 8760).toFixed(4)}:-</dd>
+              <dt>Minut:</dt>
+              <dd>{(this.props.year / 525600).toFixed(6)}:-</dd>
+            </DL>
+          </Content>
+        </Child>
+      </Parent>
+    );
+  }
+}
 
 function mapStateToProps(state) {
   return {

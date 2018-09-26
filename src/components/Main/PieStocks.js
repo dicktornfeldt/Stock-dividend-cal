@@ -19,41 +19,44 @@ const PieWrapper = styled.div`
   }
 `;
 
-const PieStocks = props => {
-  let names = null;
-  let value = null;
-  let data = null;
-  let options = null;
+class PieStocks extends React.PureComponent {
+  render() {
+    console.log('PieSector component');
+    let names = null;
+    let value = null;
+    let data = null;
+    let options = null;
 
-  if (Object.keys(props.portfolio).length !== 0) {
-    names = props.portfolio.map(stock => {
-      return stock.name;
-    });
-    value = props.portfolio.map(stock => {
-      return stock.value;
-    });
+    if (Object.keys(this.props.portfolio).length !== 0) {
+      names = this.props.portfolio.map(stock => {
+        return stock.name;
+      });
+      value = this.props.portfolio.map(stock => {
+        return stock.value;
+      });
 
-    data = {
-      labels: names,
-      datasets: [
-        {
-          data: value,
-          backgroundColor: colors,
-        },
-      ],
-    };
+      data = {
+        labels: names,
+        datasets: [
+          {
+            data: value,
+            backgroundColor: colors,
+          },
+        ],
+      };
 
-    options = {
-      legend: { display: false },
-    };
+      options = {
+        legend: { display: false },
+      };
+    }
+
+    return Object.keys(this.props.portfolio).length !== 0 ? (
+      <PieWrapper>
+        <p>Portföljfördelning</p>
+        <Pie data={data} options={options} />
+      </PieWrapper>
+    ) : null;
   }
-
-  return Object.keys(props.portfolio).length !== 0 ? (
-    <PieWrapper>
-      <p>Portföljfördelning</p>
-      <Pie data={data} options={options} />
-    </PieWrapper>
-  ) : null;
-};
+}
 
 export default PieStocks;
