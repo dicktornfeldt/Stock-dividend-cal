@@ -15,7 +15,7 @@ const Side = styled.div`
   width: 100%;
   position: fixed;
   z-index: 99;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   top: 0;
   bottom: 0;
   left: 0;
@@ -34,6 +34,7 @@ const Side = styled.div`
     `};
   @media (min-width: 1024px) {
     width: 30rem;
+    font-size: 1.2rem;
     transform: translateX(0);
     padding: 2.5rem;
     right: auto;
@@ -67,8 +68,6 @@ class Sidebar extends Component {
   };
 
   render() {
-    console.log('Sidebar component');
-
     return (
       <React.Fragment>
         <Side sidebarVisible={this.state.sidebarVisible}>

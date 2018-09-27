@@ -94,7 +94,6 @@ class Modal extends React.PureComponent {
   };
 
   render() {
-    console.log('Modal Component');
     return (
       <ModalContainer>
         <aside onClick={this.props.handleClick} />

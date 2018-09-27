@@ -72,8 +72,6 @@ const DL = styled.dl`
 
 class DividendSumTable extends React.PureComponent {
   render() {
-    console.log('DividendSumTable Component');
-
     return (
       <Parent>
         <Child>

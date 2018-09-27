@@ -60,8 +60,6 @@ const Head = styled.div`
 
 class YearTable extends React.PureComponent {
   render() {
-    console.log('YearTable component');
-
     return (
       <React.Fragment>
         <Parent>

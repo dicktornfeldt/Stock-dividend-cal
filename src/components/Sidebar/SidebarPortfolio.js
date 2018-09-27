@@ -19,12 +19,13 @@ const MyStocks = styled.ul`
     }
   }
   span {
-    width: 1.1rem;
+    width: 1.4rem;
     left: -2rem;
     top: 0.5rem;
     position: absolute;
     cursor: pointer;
     @media (min-width: 1024px) {
+      width: 1.1rem;
       left: -1.5rem;
       top: 0.3rem;
     }

@@ -21,7 +21,6 @@ const PieWrapper = styled.div`
 
 class PieStocks extends React.PureComponent {
   render() {
-    console.log('PieSector component');
     let names = null;
     let value = null;
     let data = null;

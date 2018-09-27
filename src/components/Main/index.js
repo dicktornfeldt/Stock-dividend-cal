@@ -19,8 +19,6 @@ const MainContent = styled.main`
 
 class Main extends React.PureComponent {
   render() {
-    console.log('Main Component');
-
     const { portfolio } = this.props;
 
     let portfolioSum = 0;

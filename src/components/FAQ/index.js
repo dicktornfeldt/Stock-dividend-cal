@@ -47,8 +47,6 @@ class FAQ extends React.PureComponent {
   };
 
   render() {
-    console.log('FAQ Component');
-
     return (
       <React.Fragment>
         <ImgContainer onClick={this.handleClick}>
