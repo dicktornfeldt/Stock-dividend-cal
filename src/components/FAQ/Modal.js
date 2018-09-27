@@ -126,7 +126,7 @@ class Modal extends React.PureComponent {
               Hur hämtas aktiedata?<br />
             </strong>Aktiedata hämtas från Avanza varje gång du lägger till en ny aktie i din
             portfölj. Inte när du justerar antalet av respektive innehav. Så för att uppdatera datan
-            för en enskil aktie, ta bort den ur din portfölj och addera den på nytt.
+            för en enskild aktie, ta bort den ur din portfölj och addera den på nytt.
           </p>
           <p>
             <strong>
@@ -139,14 +139,20 @@ class Modal extends React.PureComponent {
             <strong>
               Varför funkar inte ...XXX?<br />
             </strong>Detta är en webbapp som jag byggt främst för att göra mitt eget
-            aktieinvesterande ännu lite roligare. Jag är dessutom utvecklare, så jag kombinerar lite
-            allmän nytta med egen vinning. Med det sagt så tar jag mer än gärna emot konstruktiv
-            kritik, må det vara funktionalitet eller utformning av webbappen. Skicka ett mail till{' '}
-            <a href="mailto:dick@pigment.se">dick@pigment.se</a> eller kontakta mig på{' '}
+            aktieinvesterande ännu lite roligare. Med det sagt så tar jag mer än gärna emot
+            konstruktiv kritik, må det vara funktionalitet eller utformning av webbappen. Skicka ett
+            mail till <a href="mailto:dick@pigment.se">dick@pigment.se</a> eller kontakta mig på{' '}
             <a rel="nofollow" href="https://twitter.com/dicktornfeldt" target="blank">
               {' '}
               Twitter.
             </a>
+          </p>
+          <p>
+            <strong>
+              Bara svenska aktier?<br />
+            </strong>Tyvärr så har Avanza inte utdelningsdata på aktier utanför Sverige. Vi har
+            frågat supporten om tanken finns att lägga till detta, utan svar än så länge. Om
+            intresset för denna app blir tillräckligt stort kan vi hitta andra sätt att lösa det på.
           </p>
         </div>
       </ModalContainer>

@@ -43,8 +43,19 @@ const Side = styled.div`
 
 const StyledH1 = styled(H1)`
   text-align: center;
+  position: relative;
   @media (min-width: 1024px) {
     text-align: left;
+  }
+  small {
+    font-size: 50%;
+    position: absolute;
+    top: -0.7rem;
+    left: 0.6rem;
+    transform: rotate(-17deg);
+    @media (min-width: 1024px) {
+      left: -0.9rem;
+    }
   }
   span {
     font-size: 2.5rem;
@@ -72,6 +83,7 @@ class Sidebar extends Component {
       <React.Fragment>
         <Side sidebarVisible={this.state.sidebarVisible}>
           <StyledH1>
+            <small>BETA</small>
             Portföljen{' '}
             <span role="img" aria-label="emoji">
               🤑
