@@ -64,9 +64,9 @@ export function getDividendMonth(portfolio, month) {
 
     // get an array of stocks dividends
     if (Object.keys(array).length !== 0) {
-      const dividendArray = array.map(({ quantity, dividends }) => {
+      const dividendArray = array.map(({ quantity, dividends, currency_multiply }) => {
         return dividends
-          .map(item => item.amountPerShare * quantity)
+          .map(item => item.amountPerShare * quantity * currency_multiply)
           .reduce((prev, next) => prev + next);
       });
 
@@ -94,9 +94,9 @@ export function getMonthList(portfolio, month) {
       });
 
     if (Object.keys(stocks).length !== 0) {
-      const dividendArray = stocks.map(({ quantity, dividends }) => {
+      const dividendArray = stocks.map(({ quantity, dividends, currency_multiply }) => {
         return dividends
-          .map(item => item.amountPerShare * quantity)
+          .map(item => item.amountPerShare * quantity * currency_multiply)
           .reduce((prev, next) => prev + next);
       });
       const $data = {

@@ -25,6 +25,7 @@ class Main extends React.PureComponent {
     if (Object.keys(portfolio).length !== 0) {
       portfolioSum = portfolio.map(value => value.value).reduce((prev, next) => prev + next);
     }
+
     const jan = portfolio != null ? Math.round(getDividendMonth(portfolio, '2018-01')) : 0;
     const feb = portfolio != null ? Math.round(getDividendMonth(portfolio, '2018-02')) : 0;
     const mar = portfolio != null ? Math.round(getDividendMonth(portfolio, '2018-03')) : 0;

@@ -6,11 +6,28 @@ export const addStock = (name, api_id) => {
     ).then(response => {
       if (response.ok) {
         response.json().then(data => {
+          // set sector if it is exits
           let sector = '';
           if (data.company.sector) {
             sector = data.company.sector;
           }
-          dispatch(dataRequestSuccess(name, data.lastPrice, data.dividends, api_id, sector));
+
+          // set currency multipliers for always show in SEK
+          let currency_multiply = 1;
+          if (data.currency === 'EUR') {
+            currency_multiply = 10.3;
+          } else if (data.currency === 'NOK') {
+            currency_multiply = 1.08;
+          } else if (data.currency === 'DKK') {
+            currency_multiply = 1.38;
+          }
+
+          const price = (data.lastPrice * currency_multiply).toFixed(2);
+          const price_int = Number(price);
+
+          dispatch(
+            dataRequestSuccess(name, price_int, data.dividends, api_id, sector, currency_multiply)
+          );
         });
       } else {
         response.json().then(error => {
@@ -27,7 +44,7 @@ export const dataRequest = () => {
   };
 };
 
-export const dataRequestSuccess = (name, price, dividends, api_id, sector) => {
+export const dataRequestSuccess = (name, price, dividends, api_id, sector, currency_multiply) => {
   // remove object
   const decodedName = name.replace(/&amp;/g, '&');
 
@@ -41,6 +58,7 @@ export const dataRequestSuccess = (name, price, dividends, api_id, sector) => {
       quantity: '1',
       value: price,
       sector,
+      currency_multiply,
     },
   };
 };
