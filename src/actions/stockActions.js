@@ -1,9 +1,10 @@
+const api_url =
+  'https://limitless-garden-26844.herokuapp.com/https://www.avanza.se/_mobile/market/stock/';
+
 export const addStock = (name, api_id) => {
   return dispatch => {
     dispatch(dataRequest());
-    return fetch(
-      `https://limitless-garden-26844.herokuapp.com/https://www.avanza.se/_mobile/market/stock/${api_id}`
-    ).then(response => {
+    return fetch(api_url + api_id).then(response => {
       if (response.ok) {
         response.json().then(data => {
           // set sector if it is exits
@@ -22,9 +23,9 @@ export const addStock = (name, api_id) => {
             currency_multiply = 1.38;
           }
 
+          // set price to two decimals
           const price = (data.lastPrice * currency_multiply).toFixed(2);
           const price_int = Number(price);
-
           dispatch(
             dataRequestSuccess(name, price_int, data.dividends, api_id, sector, currency_multiply)
           );
