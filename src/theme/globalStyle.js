@@ -3,7 +3,15 @@
  */
 import { createGlobalStyle } from 'styled-components';
 
-export const GlobalStyle = createGlobalStyle`    
+export const GlobalStyle = createGlobalStyle`
+
+  @font-face {
+    font-family: 'Roboto Mono';
+    src: url('/font/RobotoMono-Regular.woff') format('woff');
+    src: url('/font/RobotoMono-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }
   html,
   body,
   #root {

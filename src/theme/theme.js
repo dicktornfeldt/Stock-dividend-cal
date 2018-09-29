@@ -13,5 +13,5 @@ export const theme = {
   secondary: '#A3A1F7',
   primaryfont:
     "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
-  secondaryfont: "'Roboto Mono', monospace",
+  secondaryfont: 'Roboto Mono',
 };
