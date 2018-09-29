@@ -23,6 +23,24 @@ function appReducer(state = INITIAL_STATE, action) {
         loading: false,
       };
 
+    case 'UPDATE_PORTFOLIO_REQUEST':
+      return {
+        error: false,
+        loading: true,
+      };
+
+    case 'UPDATE_PORTFOLIO_SUCCESS':
+      return {
+        ...state,
+        loading: false,
+      };
+
+    case 'UPDATE_PORTFOLIO_FAILED':
+      return {
+        error: true,
+        loading: false,
+      };
+
     default:
       return state;
   }

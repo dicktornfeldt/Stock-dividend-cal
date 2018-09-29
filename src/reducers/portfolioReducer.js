@@ -25,6 +25,21 @@ function portfolioReducer(state = INITIAL_STATE, action) {
         ),
       };
 
+    case 'UPDATE_PORTFOLIO_SUCCESS':
+      return {
+        ...state,
+        portfolio: state.portfolio.map(
+          item =>
+            item.api_id === action.api_id
+              ? {
+                  ...item,
+                  price: action.price,
+                  value: action.price * item.quantity,
+                }
+              : item
+        ),
+      };
+
     case 'DELETE_STOCK':
       return {
         ...state,

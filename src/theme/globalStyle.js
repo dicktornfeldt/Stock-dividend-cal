@@ -20,7 +20,6 @@ export const GlobalStyle = createGlobalStyle`
 
   html {
     font-size: 62.5%;
-    font-smooth: always;
     overflow-y: scroll;
     box-sizing: border-box;
     -ms-text-size-adjust: 100%;
