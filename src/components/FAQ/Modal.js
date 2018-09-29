@@ -149,10 +149,9 @@ class Modal extends React.PureComponent {
           </p>
           <p>
             <strong>
-              Bara svenska aktier?<br />
-            </strong>Tyvärr så har Avanza inte utdelningsdata på aktier utanför Sverige. Vi har
-            frågat supporten om tanken finns att lägga till detta, utan svar än så länge. Om
-            intresset för denna app blir tillräckligt stort kan vi hitta andra sätt att lösa det på.
+              Bara nordiska aktier?<br />
+            </strong>Tyvärr så har Avanza inte utdelningsdata på aktier utanför Norden. Vi jobbar på
+            att få in andra länders aktier så fort som möjligt.
           </p>
         </div>
       </ModalContainer>
