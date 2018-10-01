@@ -97,7 +97,9 @@ export const updatePortfolio = portfolio => {
     dispatch(updateRequest());
 
     portfolio.map(stock => {
-      return fetch(api_url + stock.api_id).then(response => {
+      return fetch(api_url + stock.api_id, {
+        cache: 'reload',
+      }).then(response => {
         if (response.ok) {
           response.json().then(data => {
             // set currency multipliers for always show in SEK
@@ -112,6 +114,7 @@ export const updatePortfolio = portfolio => {
             // set price to two decimals
             const price = (data.lastPrice * currency_multiply).toFixed(2);
             const price_int = Number(price);
+
             dispatch(updateRequestSuccess(price_int, stock.api_id));
           });
         } else {
@@ -131,8 +134,6 @@ export const updateRequest = () => {
 };
 
 export const updateRequestSuccess = (price, api_id) => {
-  console.log(price, api_id);
-
   return {
     type: 'UPDATE_PORTFOLIO_SUCCESS',
     price,
