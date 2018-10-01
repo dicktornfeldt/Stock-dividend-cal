@@ -2,9 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
-import { editStock, deleteStock, updatePortfolio } from '../../actions/stockActions';
+import { editStock, deleteStock, editStockModal } from '../../actions/stockActions';
+import PortfolioUpdate from './PortfolioUpdate';
 import Trash from '../../images/trash.svg';
-import Update from '../../images/update.svg';
+import EditIcon from '../../images/edit.svg';
 
 const MyStocks = styled.ul`
   position: relative;
@@ -51,43 +52,24 @@ const MyStocks = styled.ul`
       border: 1px solid #747480;
     }
   }
-`;
-
-const RefreshWrapper = styled.div`
-  margin: 0;
-  border-bottom: 3px solid ${props => props.theme.border};
-  margin: 0 0 2rem 0;
-  padding: 0 0 1rem 0;
-  text-align: center;
-  button {
+  small {
+    font-size: inherit;
     position: relative;
-    color: white;
-    border: none;
-    background-color: #9e9e9e;
-    border-radius: 0.3rem;
-    font-size: 1.4rem;
-    padding: 0.5rem 1rem 0.7rem 2.2rem;
-    cursor: pointer;
-    transition: all 170ms linear;
-    @media (min-width: 1024px) {
-      font-size: 1.3rem;
-    }
+    top: -0.1rem;
     &:hover {
-      transform: scale(1.02);
+      text-decoration: underline;
+      cursor: pointer;
     }
-    &:focus {
-      outline: none;
-    }
-    &:before {
+    &:after {
       width: 1.5rem;
       height: 1.5rem;
-      top: 49%;
+      top: 51%;
       transform: translateY(-50%);
-      left: 0.5rem;
+      right: -2.2rem;
       position: absolute;
       content: '';
       transition: all 0.15s ease;
-      background-image: url(${Update});
+      background-image: url(${EditIcon});
       background-repeat: no-repeat;
       background-position: center;
       background-size: 1.5rem auto;
@@ -116,16 +98,12 @@ class SidebarPortfolio extends React.PureComponent {
     }, 500);
   };
 
-  deleteStock = api_id => {
-    return this.props.deleteStock(api_id);
-  };
-
   renderStock() {
     return this.props.stocks.map((item, i) => (
       <li key={i}>
         <span
           onClick={() => {
-            this.deleteStock(item.api_id);
+            this.props.deleteStock(item.api_id);
           }}
         >
           <img src={Trash} alt="trash icon" />
@@ -137,24 +115,22 @@ class SidebarPortfolio extends React.PureComponent {
           onChange={this.editQuantity}
           placeholder={item.quantity + 'st'}
         />
-        {item.name}
+        <small
+          onClick={() => {
+            this.props.editStockModal(item.name, item.dividends, item.api_id);
+          }}
+        >
+          {item.name}
+        </small>
       </li>
     ));
   }
-
-  updateStocks = () => {
-    if (Object.keys(this.props.stocks).length !== 0) {
-      this.props.updatePortfolio(this.props.stocks);
-    }
-  };
 
   render() {
     return Object.keys(this.props.stocks).length !== 0 ? (
       <React.Fragment>
         <MyStocks>{this.renderStock()}</MyStocks>
-        <RefreshWrapper>
-          <button onClick={this.updateStocks}>Uppdatera aktiekurser</button>
-        </RefreshWrapper>
+        <PortfolioUpdate />
       </React.Fragment>
     ) : null;
   }
@@ -168,5 +144,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { editStock, deleteStock, updatePortfolio }
+  { editStock, deleteStock, editStockModal }
 )(SidebarPortfolio);

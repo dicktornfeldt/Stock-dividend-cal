@@ -12,7 +12,7 @@ export const addStock = (name, api_id) => {
         response.json().then(data => {
           // set sector if it is exits
           let sector = '';
-          if (data.company.sector) {
+          if ('company' in data && data.company.sector) {
             sector = data.company.sector;
           }
 
@@ -79,6 +79,21 @@ export const editStock = (quantity, api_id) => {
     type: 'EDIT_STOCK',
     quantity,
     api_id,
+  };
+};
+
+export const editStockModal = (name, dividends, api_id) => {
+  return {
+    type: 'EDIT_STOCK_MODAL',
+    name,
+    dividends,
+    api_id,
+  };
+};
+
+export const closeStockModal = () => {
+  return {
+    type: 'CLOSE_STOCK_MODAL',
   };
 };
 
