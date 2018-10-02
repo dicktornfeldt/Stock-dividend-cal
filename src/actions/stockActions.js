@@ -12,6 +12,7 @@ export const addStock = (name, api_id) => {
         response.json().then(data => {
           // set sector if it is exits
           let sector = '';
+
           if ('company' in data && data.company.sector) {
             sector = data.company.sector;
           }
@@ -34,9 +35,8 @@ export const addStock = (name, api_id) => {
           );
         });
       } else {
-        response.json().then(error => {
-          dispatch(dataRequestFailed(error));
-        });
+        dispatch(dataRequestFailed('error fetching stock'));
+        alert(`Kunde inte lägga till ${name}, vänligen informera dick@pigment.se`);
       }
     });
   };
@@ -82,21 +82,6 @@ export const editStock = (quantity, api_id) => {
   };
 };
 
-export const editStockModal = (name, dividends, api_id) => {
-  return {
-    type: 'EDIT_STOCK_MODAL',
-    name,
-    dividends,
-    api_id,
-  };
-};
-
-export const closeStockModal = () => {
-  return {
-    type: 'CLOSE_STOCK_MODAL',
-  };
-};
-
 export const deleteStock = api_id => {
   return {
     type: 'DELETE_STOCK',
@@ -133,9 +118,8 @@ export const updatePortfolio = portfolio => {
             dispatch(updateRequestSuccess(price_int, stock.api_id));
           });
         } else {
-          response.json().then(error => {
-            dispatch(updateRequestFailed(error));
-          });
+          dispatch(updateRequestFailed('error updating stock'));
+          alert(`Kunde inte uppdatera ${stock.name}, vänligen informera dick@pigment.se`);
         }
       });
     });
