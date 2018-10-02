@@ -35,9 +35,8 @@ export const addStock = (name, api_id) => {
           );
         });
       } else {
-        response.json().then(error => {
-          dispatch(dataRequestFailed(error));
-        });
+        dispatch(dataRequestFailed('error fetching stock'));
+        alert(`Kunde inte lägga till ${name}, vänligen informera dick@pigment.se`);
       }
     });
   };
@@ -119,9 +118,8 @@ export const updatePortfolio = portfolio => {
             dispatch(updateRequestSuccess(price_int, stock.api_id));
           });
         } else {
-          response.json().then(error => {
-            dispatch(updateRequestFailed(error));
-          });
+          dispatch(updateRequestFailed('error updating stock'));
+          alert(`Kunde inte uppdatera ${stock.name}, vänligen informera dick@pigment.se`);
         }
       });
     });
