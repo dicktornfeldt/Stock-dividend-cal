@@ -89,6 +89,21 @@ export const deleteStock = api_id => {
   };
 };
 
+export const editStockModal = (name, dividends, api_id) => {
+  return {
+    type: 'EDIT_STOCK_MODAL',
+    name,
+    dividends,
+    api_id,
+  };
+};
+
+export const closeStockModal = () => {
+  return {
+    type: 'CLOSE_STOCK_MODAL',
+  };
+};
+
 // -------------------------------
 // This maps through all stocks in portfolio and updates price & value
 // -------------------------------
