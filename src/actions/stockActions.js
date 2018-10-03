@@ -20,11 +20,11 @@ export const addStock = (name, api_id) => {
           // set currency multipliers for always show in SEK
           let currency_multiply = 1;
           if (data.currency === 'EUR') {
-            currency_multiply = 10.3;
+            currency_multiply = 10.4;
           } else if (data.currency === 'NOK') {
-            currency_multiply = 1.08;
+            currency_multiply = 1.1;
           } else if (data.currency === 'DKK') {
-            currency_multiply = 1.38;
+            currency_multiply = 1.39;
           }
 
           // set price to two decimals
