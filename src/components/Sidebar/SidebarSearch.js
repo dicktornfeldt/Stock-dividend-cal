@@ -41,11 +41,11 @@ const StockList = styled.ul`
       background-image: url(${Plus});
       background-repeat: no-repeat;
       background-position: center;
-      background-size: 1rem 1rem;
+      background-size: 1rem auto;
       @media (min-width: 1024px) {
         width: 0.8rem;
         height: 0.8rem;
-        background-size: 0.8rem 0.8rem;
+        background-size: 0.8rem auto;
       }
     }
   }
@@ -60,7 +60,7 @@ class SidebarSearch extends React.PureComponent {
 
   renderStockList() {
     if (this.state.input.length > 0) {
-      return this.state.result.map((item, i) => (
+      return this.state.result.slice(0, 30).map((item, i) => (
         <li
           onClick={() => {
             this.props.addStock(item.name, item.api_id);

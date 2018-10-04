@@ -89,6 +89,22 @@ export const deleteStock = api_id => {
   };
 };
 
+export const editStockModal = (name, dividends, api_id, currency_multiply) => {
+  return {
+    type: 'EDIT_STOCK_MODAL',
+    name,
+    dividends,
+    api_id,
+    currency_multiply,
+  };
+};
+
+export const closeStockModal = () => {
+  return {
+    type: 'CLOSE_STOCK_MODAL',
+  };
+};
+
 // -------------------------------
 // This maps through all stocks in portfolio and updates price & value
 // -------------------------------
@@ -105,11 +121,11 @@ export const updatePortfolio = portfolio => {
             // set currency multipliers for always show in SEK
             let currency_multiply = 1;
             if (data.currency === 'EUR') {
-              currency_multiply = 10.3;
+              currency_multiply = 10.4;
             } else if (data.currency === 'NOK') {
-              currency_multiply = 1.08;
+              currency_multiply = 1.1;
             } else if (data.currency === 'DKK') {
-              currency_multiply = 1.38;
+              currency_multiply = 1.39;
             }
             // set price to two decimals
             const price = (data.lastPrice * currency_multiply).toFixed(2);
