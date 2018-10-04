@@ -6,6 +6,7 @@ const INITIAL_STATE = {
     name: '',
     dividends: '',
     api_id: '',
+    currency_multiply: '',
   },
 };
 
@@ -59,6 +60,7 @@ function appReducer(state = INITIAL_STATE, action) {
           name: action.name,
           dividends: action.dividends,
           api_id: action.api_id,
+          currency_multiply: action.currency_multiply,
         },
       };
 
@@ -70,6 +72,7 @@ function appReducer(state = INITIAL_STATE, action) {
           name: '',
           dividends: '',
           api_id: '',
+          currency_multiply: '',
         },
       };
 

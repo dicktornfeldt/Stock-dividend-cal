@@ -99,8 +99,8 @@ class SidebarPortfolio extends React.PureComponent {
   };
 
   renderStock() {
-    return this.props.stocks.map((item, i) => (
-      <li key={i}>
+    return this.props.stocks.map(item => (
+      <li key={item.api_id}>
         <span
           onClick={() => {
             this.props.deleteStock(item.api_id);
@@ -117,7 +117,12 @@ class SidebarPortfolio extends React.PureComponent {
         />
         <small
           onClick={() => {
-            this.props.editStockModal(item.name, item.dividends, item.api_id);
+            this.props.editStockModal(
+              item.name,
+              item.dividends,
+              item.api_id,
+              item.currency_multiply
+            );
           }}
         >
           {item.name}
