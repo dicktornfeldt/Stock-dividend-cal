@@ -116,9 +116,7 @@ class SidebarPortfolio extends React.PureComponent {
           placeholder={item.quantity + 'st'}
         />
 
-        {item.name}
-
-        {/* <small
+        <small
           onClick={() => {
             this.props.editStockModal(
               item.name,
@@ -129,7 +127,7 @@ class SidebarPortfolio extends React.PureComponent {
           }}
         >
           {item.name}
-        </small> */}
+        </small>
       </li>
     ));
   }

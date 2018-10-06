@@ -89,6 +89,9 @@ export const deleteStock = api_id => {
   };
 };
 
+// -------------------------------
+// Open modal to edit stocks dividend
+// -------------------------------
 export const editStockModal = (name, dividends, api_id, currency_multiply) => {
   return {
     type: 'EDIT_STOCK_MODAL',
@@ -96,6 +99,26 @@ export const editStockModal = (name, dividends, api_id, currency_multiply) => {
     dividends,
     api_id,
     currency_multiply,
+  };
+};
+
+export const editDividend = api_id => {
+  console.log(api_id);
+
+  return {
+    type: 'EDIT_DIVIDEND',
+    // name,
+    // dividends,
+    // api_id,
+    // currency_multiply,
+  };
+};
+
+export const deleteDividend = (exDate, api_id) => {
+  return {
+    type: 'DELETE_DIVIDEND',
+    exDate,
+    api_id,
   };
 };
 

@@ -5,9 +5,10 @@ import { Helmet } from 'react-helmet';
 
 import { GlobalStyle } from './theme/globalStyle';
 import { theme } from './theme/theme';
+
 import Home from './views/Home';
 import FAQ from './components/FAQ';
-import EditStock from './components/EditStock';
+import EditDividend from './components/EditDividend';
 
 const title = 'Portföljen';
 const desc = 'Bygg din aktieportfölj och få en överblick över dina utdelningar';
@@ -30,10 +31,9 @@ class App extends Component {
             </Helmet>
             <Switch>
               <Route all path="/" component={Home} />
-              {/* <Route component={NoMatch404} /> */}
             </Switch>
             <FAQ />
-            <EditStock />
+            <EditDividend />
           </React.Fragment>
         </ThemeProvider>
       </React.Fragment>

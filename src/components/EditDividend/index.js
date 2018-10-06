@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import styled, { css } from 'styled-components';
 
 import { ModalContainer, Close, H2 } from '../FAQ/ModalStyle';
-import { closeStockModal } from '../../actions/stockActions';
+import { closeStockModal, editDividend, deleteDividend } from '../../actions/stockActions';
 
 const StyledUl = styled.ul`
   margin: 0 0 1rem 0;
@@ -71,9 +71,14 @@ const Button = styled.button`
     `};
 `;
 
-class EditStock extends React.PureComponent {
+class EditDividend extends React.Component {
   static propTypes = {
     modalactive: PropTypes.bool,
+    modaldata: PropTypes.object,
+  };
+
+  edit = () => {
+    this.props.editDividend(this.props.modaldata.api_id);
   };
 
   renderDividends = () => {
@@ -85,6 +90,7 @@ class EditStock extends React.PureComponent {
           <InputWrap>
             <label htmlFor="dividend_exdate">Handlas utan utdelning</label>
             <input
+              onChange={this.edit}
               type="date"
               min="2018-01-01"
               max="2018-12-31"
@@ -94,9 +100,20 @@ class EditStock extends React.PureComponent {
           </InputWrap>
           <InputWrap>
             <label htmlFor="dividend">Utdelning per aktie</label>
-            <input type="number" name="dividend" placeholder={price_int + ' kr'} />
+            <input
+              onChange={this.edit}
+              type="number"
+              name="dividend"
+              placeholder={price_int + ' kr'}
+            />
           </InputWrap>
-          <Button>Ta bort</Button>
+          <Button
+            onClick={() => {
+              this.props.deleteDividend(dividend.exDate, this.props.modaldata.api_id);
+            }}
+          >
+            Ta bort
+          </Button>
         </li>
       );
     });
@@ -133,5 +150,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { closeStockModal }
-)(EditStock);
+  { closeStockModal, editDividend, deleteDividend }
+)(EditDividend);
