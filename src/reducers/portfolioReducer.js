@@ -60,6 +60,28 @@ function portfolioReducer(state = INITIAL_STATE, action) {
         ),
       };
 
+    case 'EDIT_DIVIDEND':
+      return {
+        ...state,
+        portfolio: state.portfolio.map(
+          item =>
+            item.api_id === action.api_id
+              ? {
+                  ...item,
+                  dividends: item.dividends.map(
+                    item =>
+                      item.exDate === action.exDate
+                        ? {
+                            ...item,
+                            amountPerShare: action.amountPerShare,
+                          }
+                        : item
+                  ),
+                }
+              : item
+        ),
+      };
+
     default:
       return state;
   }

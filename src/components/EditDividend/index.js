@@ -71,14 +71,16 @@ const Button = styled.button`
     `};
 `;
 
-class EditDividend extends React.Component {
+class EditDividend extends React.PureComponent {
   static propTypes = {
     modalactive: PropTypes.bool,
     modaldata: PropTypes.object,
   };
 
-  edit = () => {
-    this.props.editDividend(this.props.modaldata.api_id);
+  edit = event => {
+    const exDate = event.target.name;
+    const amountPerShare = event.target.value;
+    this.props.editDividend(this.props.modaldata.api_id, exDate, Number(amountPerShare));
   };
 
   renderDividends = () => {
@@ -90,7 +92,7 @@ class EditDividend extends React.Component {
           <InputWrap>
             <label htmlFor="dividend_exdate">Handlas utan utdelning</label>
             <input
-              onChange={this.edit}
+              disabled
               type="date"
               min="2018-01-01"
               max="2018-12-31"
@@ -103,7 +105,7 @@ class EditDividend extends React.Component {
             <input
               onChange={this.edit}
               type="number"
-              name="dividend"
+              name={dividend.exDate}
               placeholder={price_int + ' kr'}
             />
           </InputWrap>

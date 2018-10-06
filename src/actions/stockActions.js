@@ -102,15 +102,12 @@ export const editStockModal = (name, dividends, api_id, currency_multiply) => {
   };
 };
 
-export const editDividend = api_id => {
-  console.log(api_id);
-
+export const editDividend = (api_id, exDate, amountPerShare) => {
   return {
     type: 'EDIT_DIVIDEND',
-    // name,
-    // dividends,
-    // api_id,
-    // currency_multiply,
+    exDate,
+    api_id,
+    amountPerShare,
   };
 };
 
