@@ -115,6 +115,7 @@ class SidebarPortfolio extends React.PureComponent {
           onChange={this.editQuantity}
           placeholder={item.quantity + 'st'}
         />
+
         <small
           onClick={() => {
             this.props.editStockModal(

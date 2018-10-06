@@ -64,6 +64,15 @@ function appReducer(state = INITIAL_STATE, action) {
         },
       };
 
+    case 'DELETE_DIVIDEND':
+      return {
+        ...state,
+        modaldata: {
+          ...state.modaldata,
+          dividends: state.modaldata.dividends.filter(item => action.exDate !== item.exDate),
+        },
+      };
+
     case 'CLOSE_STOCK_MODAL':
       return {
         ...state,

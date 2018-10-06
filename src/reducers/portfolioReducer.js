@@ -46,6 +46,20 @@ function portfolioReducer(state = INITIAL_STATE, action) {
         portfolio: state.portfolio.filter(item => action.api_id !== item.api_id),
       };
 
+    case 'DELETE_DIVIDEND':
+      return {
+        ...state,
+        portfolio: state.portfolio.map(
+          item =>
+            item.api_id === action.api_id
+              ? {
+                  ...item,
+                  dividends: item.dividends.filter(item => action.exDate !== item.exDate),
+                }
+              : item
+        ),
+      };
+
     default:
       return state;
   }

@@ -8,15 +8,15 @@
     "eslint-plugin-prettier": "^2.6.0",
     "lodash.throttle": "^4.1.1",
     "prettier": "^1.13.5",
-    "react": "^16.4.0",
+    "react": "^16.5.2",
     "react-chartjs-2": "^2.7.4",
-    "react-dom": "^16.4.0",
+    "react-dom": "^16.5.2",
     "react-helmet": "^5.2.0",
     "react-minimal-pie-chart": "^3.3.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "react-router-redux": "next",
-    "react-scripts": "1.1.4",
+    "react-scripts": "2.0.4",
     "redux": "^4.0.0",
     "redux-thunk": "^2.3.0",
     "sanitize.css": "^7.0.3",
@@ -25,8 +25,16 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:3001"
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

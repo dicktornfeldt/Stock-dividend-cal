@@ -7,7 +7,7 @@ import 'sanitize.css/sanitize.css';
 
 import store, { history } from './store';
 import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+import * as serviceWorker from './serviceWorker';
 import { saveState } from './reducers/localStorage';
 
 // persist state to localstorage
@@ -28,4 +28,14 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-registerServiceWorker();
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: http://bit.ly/CRA-PWA
+serviceWorker.unregister();
+
+// remove all current serviceworkers
+navigator.serviceWorker.getRegistrations().then(function(registrations) {
+  for (let registration of registrations) {
+    registration.unregister();
+  }
+});
