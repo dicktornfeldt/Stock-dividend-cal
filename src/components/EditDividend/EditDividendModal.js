@@ -26,6 +26,7 @@ const StyledUl = styled.ul`
 
 const InputWrap = styled.article`
   margin: 0 0 1rem 0;
+  vertical-align: top;
   @media (min-width: 768px) {
     display: inline-block;
     width: 40%;
@@ -65,7 +66,7 @@ const Button = styled.button`
   cursor: pointer;
   transition: all 170ms linear;
   @media (min-width: 768px) {
-    margin: 0 0 0 1.5rem;
+    margin: 2.4rem 0 0 1.5rem;
   }
   &:hover {
     transform: scale(1.02);

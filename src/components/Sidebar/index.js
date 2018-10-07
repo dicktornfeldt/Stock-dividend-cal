@@ -47,22 +47,12 @@ const StyledH1 = styled(H1)`
   @media (min-width: 1024px) {
     text-align: left;
   }
-  small {
-    font-size: 50%;
-    position: absolute;
-    top: -0.7rem;
-    left: 0.6rem;
-    transform: rotate(-17deg);
-    @media (min-width: 1024px) {
-      left: -0.9rem;
-    }
-  }
   span {
     font-size: 2.5rem;
     position: relative;
-    top: 0.2rem;
+    top: 0.4rem;
     @media (min-width: 1024px) {
-      font-size: 3rem;
+      font-size: 2.8rem;
     }
   }
 `;
@@ -83,8 +73,7 @@ class Sidebar extends Component {
       <React.Fragment>
         <Side sidebarVisible={this.state.sidebarVisible}>
           <StyledH1>
-            <small>BETA</small>
-            Portföljen{' '}
+            Aktieutdelningar{' '}
             <span role="img" aria-label="emoji">
               🤑
             </span>

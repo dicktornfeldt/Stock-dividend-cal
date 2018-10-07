@@ -64,8 +64,9 @@ export const Close = styled.span`
 `;
 
 export const H2 = styled.h2`
-  font-size: 1.9rem;
+  font-size: 1.7rem;
   position: relative;
+  margin: 0 0 2rem 0;
   @media (min-width: 1024px) {
     font-size: 2.5rem;
   }

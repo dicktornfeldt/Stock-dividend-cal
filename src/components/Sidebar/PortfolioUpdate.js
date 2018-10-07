@@ -18,7 +18,7 @@ const RefreshWrapper = styled.div`
     background-color: #9e9e9e;
     border-radius: 0.3rem;
     font-size: 1.4rem;
-    padding: 0.5rem 1rem 0.7rem 2.2rem;
+    padding: 0.6rem 1.4rem 0.8rem 2.6rem;
     cursor: pointer;
     transition: all 170ms linear;
     @media (min-width: 1024px) {

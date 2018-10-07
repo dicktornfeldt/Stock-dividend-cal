@@ -10,7 +10,7 @@ import Home from './views/Home';
 import FAQ from './components/FAQ';
 import EditDividend from './components/EditDividend';
 
-const title = 'Portföljen';
+const title = 'Aktieutdelningar';
 const desc = 'Bygg din aktieportfölj och få en överblick över dina utdelningar';
 
 class App extends Component {
@@ -23,11 +23,11 @@ class App extends Component {
             <Helmet>
               <title>{title}</title>
               <meta name="description" content={desc} />
-              <meta property="og:title" content="{title}" />
+              <meta property="og:title" content={title} />
               <meta property="og:description" content={desc} />
               <meta property="og:url" content={window.location.href} />
               {/* <meta property="og:image" content={NextoryMetaImg} /> */}
-              <meta name="twitter:title" content="Portföljen" />
+              <meta name="twitter:title" content={title} />
             </Helmet>
             <Switch>
               <Route all path="/" component={Home} />
