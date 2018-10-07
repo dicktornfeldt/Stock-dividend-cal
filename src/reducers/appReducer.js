@@ -2,12 +2,7 @@ const INITIAL_STATE = {
   error: false,
   loading: false,
   modalactive: false,
-  modaldata: {
-    name: '',
-    dividends: '',
-    api_id: '',
-    currency_multiply: '',
-  },
+  modaldata: '',
 };
 
 function appReducer(state = INITIAL_STATE, action) {
@@ -56,33 +51,14 @@ function appReducer(state = INITIAL_STATE, action) {
       return {
         ...state,
         modalactive: true,
-        modaldata: {
-          name: action.name,
-          dividends: action.dividends,
-          api_id: action.api_id,
-          currency_multiply: action.currency_multiply,
-        },
-      };
-
-    case 'DELETE_DIVIDEND':
-      return {
-        ...state,
-        modaldata: {
-          ...state.modaldata,
-          dividends: state.modaldata.dividends.filter(item => action.exDate !== item.exDate),
-        },
+        modaldata: action.api_id,
       };
 
     case 'CLOSE_STOCK_MODAL':
       return {
         ...state,
         modalactive: false,
-        modaldata: {
-          name: '',
-          dividends: '',
-          api_id: '',
-          currency_multiply: '',
-        },
+        modaldata: '',
       };
 
     default:

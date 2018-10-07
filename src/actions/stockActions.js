@@ -1,3 +1,5 @@
+import { toSek } from '../helpers';
+
 const api_url =
   'https://limitless-garden-26844.herokuapp.com/https://www.avanza.se/_mobile/market/stock/';
 
@@ -18,14 +20,7 @@ export const addStock = (name, api_id) => {
           }
 
           // set currency multipliers for always show in SEK
-          let currency_multiply = 1;
-          if (data.currency === 'EUR') {
-            currency_multiply = 10.4;
-          } else if (data.currency === 'NOK') {
-            currency_multiply = 1.1;
-          } else if (data.currency === 'DKK') {
-            currency_multiply = 1.39;
-          }
+          const currency_multiply = toSek(data.currency);
 
           // set price to two decimals
           const price = (data.lastPrice * currency_multiply).toFixed(2);
@@ -92,22 +87,31 @@ export const deleteStock = api_id => {
 // -------------------------------
 // Open modal to edit stocks dividend
 // -------------------------------
-export const editStockModal = (name, dividends, api_id, currency_multiply) => {
+export const editStockModal = api_id => {
   return {
     type: 'EDIT_STOCK_MODAL',
-    name,
-    dividends,
     api_id,
-    currency_multiply,
   };
 };
 
-export const editDividend = (api_id, exDate, amountPerShare) => {
+export const addDividend = (api_id, exDate, amountPerShare) => {
+  return {
+    type: 'ADD_DIVIDEND',
+    api_id,
+    newDividend: {
+      exDate,
+      amountPerShare,
+    },
+  };
+};
+
+export const editDividend = (api_id, exDate, amountPerShare, currency_multiply) => {
+  const amount = amountPerShare / currency_multiply;
   return {
     type: 'EDIT_DIVIDEND',
     exDate,
     api_id,
-    amountPerShare,
+    amount,
   };
 };
 
@@ -139,14 +143,8 @@ export const updatePortfolio = portfolio => {
         if (response.ok) {
           response.json().then(data => {
             // set currency multipliers for always show in SEK
-            let currency_multiply = 1;
-            if (data.currency === 'EUR') {
-              currency_multiply = 10.4;
-            } else if (data.currency === 'NOK') {
-              currency_multiply = 1.1;
-            } else if (data.currency === 'DKK') {
-              currency_multiply = 1.39;
-            }
+            const currency_multiply = toSek(data.currency);
+
             // set price to two decimals
             const price = (data.lastPrice * currency_multiply).toFixed(2);
             const price_int = Number(price);

@@ -7,7 +7,7 @@ const ImgContainer = styled.div`
   width: 4rem;
   height: 4rem;
   position: fixed;
-  z-index: 999;
+  z-index: 900;
   left: auto;
   right: 1.5rem;
   top: auto;

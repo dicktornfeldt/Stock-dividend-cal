@@ -60,7 +60,7 @@ class SidebarSearch extends React.PureComponent {
 
   renderStockList() {
     if (this.state.input.length > 0) {
-      return this.state.result.slice(0, 30).map((item, i) => (
+      return this.state.result.slice(0, 25).map((item, i) => (
         <li
           onClick={() => {
             this.props.addStock(item.name, item.api_id);

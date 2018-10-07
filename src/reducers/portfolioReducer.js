@@ -59,7 +59,19 @@ function portfolioReducer(state = INITIAL_STATE, action) {
               : item
         ),
       };
-
+    case 'ADD_DIVIDEND':
+      return {
+        ...state,
+        portfolio: state.portfolio.map(
+          item =>
+            item.api_id === action.api_id
+              ? {
+                  ...item,
+                  dividends: [...item.dividends, action.newDividend],
+                }
+              : item
+        ),
+      };
     case 'EDIT_DIVIDEND':
       return {
         ...state,
@@ -73,7 +85,7 @@ function portfolioReducer(state = INITIAL_STATE, action) {
                       item.exDate === action.exDate
                         ? {
                             ...item,
-                            amountPerShare: action.amountPerShare,
+                            amountPerShare: action.amount,
                           }
                         : item
                   ),

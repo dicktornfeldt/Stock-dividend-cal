@@ -50,6 +50,28 @@
 //   }
 // }
 
+// -------------------------------
+// set currency multipliers for always show in SEK
+// -------------------------------
+export function toSek(currency) {
+  let currency_multiply = 1;
+  if (currency === 'EUR') {
+    currency_multiply = 10.4;
+  } else if (currency === 'NOK') {
+    currency_multiply = 1.1;
+  } else if (currency === 'DKK') {
+    currency_multiply = 1.39;
+  } else if (currency === 'USD') {
+    currency_multiply = 9.08;
+  } else if (currency === 'CAD') {
+    currency_multiply = 7.02;
+  }
+  return currency_multiply;
+}
+
+// -------------------------------
+// Dividends each month
+// -------------------------------
 export function getDividendMonth(portfolio, month) {
   if (Object.keys(portfolio).length !== 0) {
     // get an array of stocks that has divdends on give month

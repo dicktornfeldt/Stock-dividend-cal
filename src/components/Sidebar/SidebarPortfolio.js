@@ -118,12 +118,7 @@ class SidebarPortfolio extends React.PureComponent {
 
         <small
           onClick={() => {
-            this.props.editStockModal(
-              item.name,
-              item.dividends,
-              item.api_id,
-              item.currency_multiply
-            );
+            this.props.editStockModal(item.api_id);
           }}
         >
           {item.name}
