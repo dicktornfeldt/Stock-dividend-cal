@@ -62,9 +62,9 @@ export function toSek(currency) {
   } else if (currency === 'DKK') {
     currency_multiply = 1.39;
   } else if (currency === 'USD') {
-    currency_multiply = 9.12;
+    currency_multiply = 9.18;
   } else if (currency === 'CAD') {
-    currency_multiply = 6.97;
+    currency_multiply = 6.99;
   }
   return currency_multiply;
 }

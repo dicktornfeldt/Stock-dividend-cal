@@ -21,7 +21,7 @@ const Side = styled.div`
   left: 0;
   right: 0;
   padding: 2.5rem 3.5rem;
-  overflow-y: scroll;
+  overflow-y: auto;
   transition-timing-function: ease-in;
   transition: 0.2s;
   transform: translateX(-100%);
