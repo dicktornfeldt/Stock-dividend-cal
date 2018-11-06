@@ -99,6 +99,8 @@ class SidebarPortfolio extends React.PureComponent {
   };
 
   renderStock() {
+    this.props.stocks.sort((a, b) => a.name.localeCompare(b.name));
+
     return this.props.stocks.map(item => (
       <li key={item.api_id}>
         <span
