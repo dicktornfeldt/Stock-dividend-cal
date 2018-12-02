@@ -41,7 +41,7 @@ const MyStocks = styled.ul`
     border: 1px solid ${props => props.theme.border};
     font-family: ${props => props.theme.secondaryfont};
     padding: 0.6rem 0.5rem 0.5rem 0.5rem;
-    width: 4rem;
+    width: 4.7rem;
     margin-right: 0.6rem;
     @media (min-width: 1024px) {
       padding: 0.4rem 0.3rem 0.3rem 0.3rem;
@@ -115,7 +115,7 @@ class SidebarPortfolio extends React.PureComponent {
           type="text"
           name={item.api_id}
           onChange={this.editQuantity}
-          placeholder={item.quantity + 'st'}
+          placeholder={item.quantity}
         />
 
         <small
