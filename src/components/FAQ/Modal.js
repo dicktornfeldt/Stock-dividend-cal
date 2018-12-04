@@ -44,8 +44,18 @@ class Modal extends React.PureComponent {
               <br />
             </strong>
             Aktiedata hämtas från Avanza varje gång du lägger till en ny aktie i din portfölj. Inte
-            när du justerar antalet av respektive innehav. Så för att uppdatera datan för en enskild
-            aktie, ta bort den ur din portfölj och addera den på nytt.
+            när du justerar antalet av respektive innehav. Så för att uppdatera din portföljdata,
+            klicka på knappen "Uppdatera aktiekurser"
+          </p>
+          <p>
+            <strong>
+              Utdelningen stämmer inte/saknas?
+              <br />
+            </strong>
+            Då all utdelningsdata hämtas från Avanza för det nuvarande året, kan det ibland hända
+            att data inte stämmer (splittar av bolag) eller att Avanza inte har datan (amerikanska
+            aktier). Då finns möjligheten att editera utdelningar för respektive aktie genom att
+            klicka på den lilla pennan bredvid ditt innehav.
           </p>
           <p>
             <strong>
@@ -53,8 +63,7 @@ class Modal extends React.PureComponent {
               <br />
             </strong>
             Webappen använder sig av Google Analytics för att spåra trafik. Däremot så sparas inte
-            data som har med enskild användare att göra, dvs. webappen sparar inte ditt IP-nummer, i
-            enlighet med GDPR.
+            data som har med enskild användare att göra.
           </p>
           <p>
             <strong>
