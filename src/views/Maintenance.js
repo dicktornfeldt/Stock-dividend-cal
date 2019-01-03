@@ -44,8 +44,10 @@ class Maintenance extends Component {
           <span role="img" aria-label="emoji">
             👨‍💻
           </span>
-          Vi förbereder inför 2019 och hoppas vara tillbaka väldigt snart. Skicka ett mail till
-          dick@pigment.se om du har några funderingar.
+          Då 2019 års utdelningsdata hämtas från Avanza så väntar vi in denna. Bolagens utdelningar
+          blir känd i samband med bolagens bokslut som sedan Avanza lägger in i sitt system. Så vi
+          hoppas vara tillbaka igen i början på februari. Skicka ett mail till dick@pigment.se om du
+          har några funderingar.
         </StyledH1>
       </Main>
     );
