@@ -86,8 +86,8 @@ class EditStock extends React.PureComponent {
             <label htmlFor="dividend_exdate">Handlas utan utdelning</label>
             <input
               type="date"
-              min="2018-01-01"
-              max="2018-12-31"
+              min="2019-01-01"
+              max="2019-12-31"
               name="dividend_exdate"
               value={dividend.exDate}
             />

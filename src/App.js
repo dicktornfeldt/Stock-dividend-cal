@@ -7,7 +7,6 @@ import { GlobalStyle } from './theme/globalStyle';
 import { theme } from './theme/theme';
 
 import Home from './views/Home';
-import Maintenance from './views/Maintenance';
 import FAQ from './components/FAQ';
 import EditDividend from './components/EditDividend';
 
@@ -31,7 +30,7 @@ class App extends Component {
               <meta name="twitter:title" content={title} />
             </Helmet>
             <Switch>
-              <Route all path="/" component={Maintenance} />
+              <Route all path="/" component={Home} />
             </Switch>
             <FAQ />
             <EditDividend />

@@ -105,7 +105,8 @@ class StockTable extends React.PureComponent {
       if (list != null) {
         response = list.stocks.map((item, i) => (
           <li key={i}>
-            <span>{item.name}</span> {parseFloat(list.dividendArray[i].toFixed(2))}:-
+            <span>{item.name}</span> {parseFloat(list.dividendArray[i].toFixed(2))}
+            :-
           </li>
         ));
       }
@@ -129,73 +130,73 @@ class StockTable extends React.PureComponent {
           <ChildGrow>
             <Cell>
               <MonthSpan>Jan</MonthSpan>
-              <ul>{this.getList('2018-01')}</ul>
+              <ul>{this.getList('2019-01')}</ul>
             </Cell>
           </ChildGrow>
           <ChildGrow>
             <Cell>
               <MonthSpan>Feb</MonthSpan>
-              <ul>{this.getList('2018-02')}</ul>
+              <ul>{this.getList('2019-02')}</ul>
             </Cell>
           </ChildGrow>
           <ChildGrow>
             <Cell>
               <MonthSpan>Mar</MonthSpan>
-              <ul>{this.getList('2018-03')}</ul>
+              <ul>{this.getList('2019-03')}</ul>
             </Cell>
           </ChildGrow>
           <ChildGrow>
             <Cell>
               <MonthSpan>Apr</MonthSpan>
-              <ul>{this.getList('2018-04')}</ul>
+              <ul>{this.getList('2019-04')}</ul>
             </Cell>
           </ChildGrow>
           <ChildGrow>
             <Cell>
               <MonthSpan>Maj</MonthSpan>
-              <ul>{this.getList('2018-05')}</ul>
+              <ul>{this.getList('2019-05')}</ul>
             </Cell>
           </ChildGrow>
           <ChildGrow>
             <Cell>
               <MonthSpan>Jun</MonthSpan>
-              <ul>{this.getList('2018-06')}</ul>
+              <ul>{this.getList('2019-06')}</ul>
             </Cell>
           </ChildGrow>
           <ChildGrow>
             <Cell>
               <MonthSpan>Jul</MonthSpan>
-              <ul>{this.getList('2018-07')}</ul>
+              <ul>{this.getList('2019-07')}</ul>
             </Cell>
           </ChildGrow>
           <ChildGrow>
             <Cell>
               <MonthSpan>Aug</MonthSpan>
-              <ul>{this.getList('2018-08')}</ul>
+              <ul>{this.getList('2019-08')}</ul>
             </Cell>
           </ChildGrow>
           <ChildGrow>
             <Cell>
               <MonthSpan>Sep</MonthSpan>
-              <ul>{this.getList('2018-09')}</ul>
+              <ul>{this.getList('2019-09')}</ul>
             </Cell>
           </ChildGrow>
           <ChildGrow>
             <Cell>
               <MonthSpan>Okt</MonthSpan>
-              <ul>{this.getList('2018-10')}</ul>
+              <ul>{this.getList('2019-10')}</ul>
             </Cell>
           </ChildGrow>
           <ChildGrow>
             <Cell>
               <MonthSpan>Nov</MonthSpan>
-              <ul>{this.getList('2018-11')}</ul>
+              <ul>{this.getList('2019-11')}</ul>
             </Cell>
           </ChildGrow>
           <ChildGrow>
             <Cell>
               <MonthSpan>Dec</MonthSpan>
-              <ul>{this.getList('2018-12')}</ul>
+              <ul>{this.getList('2019-12')}</ul>
             </Cell>
           </ChildGrow>
         </Parent>

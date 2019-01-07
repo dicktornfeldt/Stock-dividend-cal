@@ -76,10 +76,13 @@ class DividendSumTable extends React.PureComponent {
       <Parent>
         <Child>
           <Head>
-            <p>Totalt utdelningar 2018</p>
+            <p>Totalt utdelningar 2019</p>
           </Head>
           <Content>
-            <p>{this.props.year}:-</p>
+            <p>
+              {this.props.year}
+              :-
+            </p>
           </Content>
         </Child>
         <Child>
@@ -87,7 +90,10 @@ class DividendSumTable extends React.PureComponent {
             <p>Snitt i månaden</p>
           </Head>
           <Content>
-            <p>{Math.round(this.props.year / 12)}:-</p>
+            <p>
+              {Math.round(this.props.year / 12)}
+              :-
+            </p>
           </Content>
         </Child>
         <Child>
@@ -97,13 +103,25 @@ class DividendSumTable extends React.PureComponent {
           <Content>
             <DL>
               <dt>Kvartal:</dt>
-              <dd>{(this.props.year / 4).toFixed(2)}:-</dd>
+              <dd>
+                {(this.props.year / 4).toFixed(2)}
+                :-
+              </dd>
               <dt>Dag:</dt>
-              <dd>{(this.props.year / 365).toFixed(2)}:-</dd>
+              <dd>
+                {(this.props.year / 365).toFixed(2)}
+                :-
+              </dd>
               <dt>Timme:</dt>
-              <dd>{(this.props.year / 8760).toFixed(4)}:-</dd>
+              <dd>
+                {(this.props.year / 8760).toFixed(4)}
+                :-
+              </dd>
               <dt>Minut:</dt>
-              <dd>{(this.props.year / 525600).toFixed(6)}:-</dd>
+              <dd>
+                {(this.props.year / 525600).toFixed(6)}
+                :-
+              </dd>
             </DL>
           </Content>
         </Child>
