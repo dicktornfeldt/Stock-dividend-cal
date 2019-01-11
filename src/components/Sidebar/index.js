@@ -7,7 +7,6 @@ import SidebarPortfolio from './SidebarPortfolio';
 import SidebarLoading from './SidebarLoading';
 import SidebarSwitch from './SidebarSwitch';
 import Tooltip from '../Tooltip';
-import AdComponent from '../Add';
 import { H1 } from '../../theme/typo';
 
 const Side = styled.div`
@@ -83,7 +82,6 @@ class Sidebar extends Component {
           <SidebarSearch />
           {this.props.loading && <SidebarLoading />}
           {Object.keys(this.props.portfolio).length === 0 && <Tooltip />}
-          <AdComponent />
         </Side>
         <SidebarSwitch sidebarVisible={this.state.sidebarVisible} onClick={this.handleClick} />
       </React.Fragment>
