@@ -17,7 +17,7 @@ const Input = styled.input`
 `;
 
 const StockList = styled.ul`
-  margin: 1rem 0 0 0;
+  margin: 1rem 0 4rem 0;
   li {
     padding: 1rem 0.4rem;
     border-bottom: 1px solid ${props => props.theme.border};
