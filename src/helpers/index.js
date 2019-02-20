@@ -56,15 +56,15 @@
 export function toSek(currency) {
   let currency_multiply = 1;
   if (currency === 'EUR') {
-    currency_multiply = 10.4;
+    currency_multiply = 10.55;
   } else if (currency === 'NOK') {
-    currency_multiply = 1.07;
+    currency_multiply = 1.08;
   } else if (currency === 'DKK') {
-    currency_multiply = 1.39;
+    currency_multiply = 1.41;
   } else if (currency === 'USD') {
-    currency_multiply = 9.14;
+    currency_multiply = 9.3;
   } else if (currency === 'CAD') {
-    currency_multiply = 6.93;
+    currency_multiply = 7.05;
   }
   return currency_multiply;
 }
