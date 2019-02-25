@@ -22,6 +22,9 @@ export const addStock = (name, api_id) => {
           // set currency multipliers for always show in SEK
           const currency_multiply = toSek(data.currency);
 
+          // only add current year of dividends
+          data.dividends = data.dividends.filter(el => el.exDate.includes('2019'));
+
           // set price to two decimals
           const price = (data.lastPrice * currency_multiply).toFixed(2);
           const price_int = Number(price);
