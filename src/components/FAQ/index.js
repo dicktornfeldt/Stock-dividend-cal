@@ -20,8 +20,6 @@ const ImgContainer = styled.div`
   background-color: white;
   border-radius: 100%;
   @media (min-width: 1024px) {
-    left: auto;
-    right: 2rem;
     position: absolute;
     width: 4.5rem;
     height: 4.5rem;
