@@ -16,7 +16,7 @@ export const addStock = (name, api_id) => {
       if (response.ok) {
         response.json().then(data => {
           // set sector if it is exits
-          let sector = '';
+          let sector = 'Övrigt';
 
           if ('company' in data && data.company.sector) {
             sector = data.company.sector;
