@@ -4,7 +4,7 @@ import { toSek } from '../helpers';
 // https://limitless-garden-26844.herokuapp.com/
 // https://cors.io/?
 
-const api_url = 'https://cors-anywhere.herokuapp.com/https://www.avanza.se/_mobile/market/stock/';
+const api_url = 'https://cors.io/?https://www.avanza.se/_mobile/market/stock/';
 
 // -------------------------------
 // Add a single stock to portfolio, fetches data from above url
