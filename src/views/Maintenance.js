@@ -46,8 +46,8 @@ class Maintenance extends Component {
           </span>
           Hej på er, då jag har alldeles för mycket privat för att kunna hålla sidan vid liv så
           läggs den nu på is. Har lagt alldeles för mycket obetald tid på något som jag inte längre
-          tycker är roligt. Om någon är sugen på att ta över driften så kan ni maila
-          dick@pigment.se. Det är ett React/Redux projekt. Må väl!
+          tycker är roligt. Men en vänlig själ har tagit över, så finnes sidan här{' '}
+          <a href="https://aktieutdelningar.now.sh/">aktieutdelningar.now.sh</a>
         </StyledH1>
       </Main>
     );
